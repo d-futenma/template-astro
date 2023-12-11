@@ -1,0 +1,111 @@
+media($device)
+  unless $breakpoint[$device]
+    error($device + 'is not defined.')
+  @media $breakpoint[$device]
+    {block}
+
+size($width, $height = $width)
+  width _add-pixel($width)
+  height _add-pixel($height)
+
+vw-pc($val)
+  _calc-vw($val, $viewport-pc)
+
+vw-sp($val)
+  _calc-vw($val, $viewport-sp)
+
+calc-line-height($font-size = null, $line-height = $font-size)
+  line-height ($line-height / $font-size)
+
+calc-letter-spacing($letter-spacing)
+  letter-spacing ($letter-spacing / 1000) em
+
+font-rem($font-size, $line-height = null, $letter-spacing = null)
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
+  font-size ($font-size / 10) rem
+
+font-pixel($font-size, $line-height = null, $letter-spacing = null)
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
+  font-size $font-size px
+
+font-vw($font-size, $line-height = null, $letter-spacing = null)
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
+  font-size ($font-size / $viewport-sp * 100) vw
+
+text-replace()
+  text-indent 100%
+  text-decoration none
+  white-space nowrap
+  overflow hidden
+
+// @example
+// ----------
+// bg-img($image-path + "example.jpg", left, top, no-repeat, #fff, cover)
+// ----------
+bg-img($file-name, $position-x = left, $position-y = top, $repeat-type = null, $bg-color = null, $bg-size = false)
+  background url($file-name) $position-x $position-y $repeat-type $bg-color
+  if $bg-size
+    background-size $bg-size
+
+// @example
+// ----------
+// bg-img-multiple({
+//   '1': $image-path + "example-1.jpg" (left top) no-repeat
+//   '2': $image-path + "example-2.jpg" (left top) no-repeat #fff
+// }, {
+//   '1': (50px 100px)
+//   '2': (50px 100px)
+// })
+// ----------
+bg-img-multiple($imagesHash, $sizesHash = false)
+  $images = null
+  for i, props in $imagesHash
+    for prop, j in props
+      if j is 0
+        if i is 1
+          $images = $images url(prop)
+        else
+          $images = $images, url(prop)
+      else
+        if prop
+          $images = $images prop
+  background $images
+  if $sizesHash
+    $sizes = null
+    for $i, $prop in $sizesHash
+      if $prop
+        if $i is 1
+          $sizes = $sizes $prop
+        else
+          $sizes = $sizes, $prop
+    background-size $sizes
+
+//@example
+//----------
+// alpha(1)
+// alpha(0, 0.5)
+//----------
+alpha($alpha, $duration = null, $ease = null)
+  if $alpha
+    opacity $alpha
+    pointer-events auto
+    visibility visible
+  else
+    opacity 0
+    pointer-events none
+    visibility hidden
+  if $duration
+    transition opacity ($duration)s $ease, visibility ($duration)s $ease
+
+// @example
+//----------
+// set-aspect-ratio(1920, 1080) -> aspect-ratio 16/9
+//----------
+aspect-ratio-set($width, $height)
+  $divisor = _greatestCommonDivisor($width, $height)
+  $widthRatio = $width / $divisor
+  $heightRatio = $height / $divisor
+
+  aspect-ratio $widthRatio / $heightRatio
+  object-fit cover
+  size _add-pixel($width) auto

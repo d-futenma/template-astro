@@ -1,0 +1,33 @@
+// pxを追加する関数
+// 単位（px|rem|vw|vh|calc）が付いている場合はそのまま返す。
+_add-pixel($val)
+  return unit($val, 'px') unless is-width($val) or typeof($val) is literal
+  $val
+
+// パーセントを計算で割り出す関数
+_percentage()
+  if length(arguments) is 1
+    return percentage(arguments[0])
+  else
+    return percentage(arguments[0] / arguments[1])
+
+// vw計算関数
+_calc-vw($val, $viewport)
+  1vw * _percentage($val, $viewport)
+
+// vh計算関数
+_calc-vh($val, $viewport)
+  1vh * _percentage($val, $viewport)
+
+// line-heightとletter-spacingを適用する関数
+_apply-font-properties($font-size, $line-height = null, $letter-spacing = null)
+  if $line-height
+    calc-line-height($font-size, $line-height)
+  if $letter-spacing
+    calc-letter-spacing($letter-spacing)
+
+// 幅と高さの最大公約数を計算する関数
+_greatestCommonDivisor($width, $height)
+  if $height == 0
+    return $width
+  return _greatestCommonDivisor($height, $width % $height)

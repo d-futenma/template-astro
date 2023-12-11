@@ -1,0 +1,56 @@
+global-reset()
+
+html
+  font-size 62.5%
+
+body
+  font-vw(26)
+  background-color $bg-color
+  color $font-color
+  font-family $font-family-base
+  font-feature-settings 'palt'
+  text-rendering auto
+  -moz-osx-font-smoothing grayscale
+  -webkit-font-smoothing antialiased
+  -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+  -webkit-text-size-adjust 100%
+
+  +media('md')
+    font-rem(14)
+
+img
+  height auto
+  max-width 100%
+  vertical-align bottom
+  width 100%
+
+  +media('md')
+    width auto
+
+svg
+  size 100%
+
+a
+  color $link-color
+  text-decoration none
+
+strong
+  font-weight bold
+
+button, input:not([type='radio']):not([type='checkbox']), select, textarea
+  background none
+  border 0
+  border-radius 0
+  font-family inherit
+  font-size 100%
+  margin 0
+  outline none
+  padding 0
+  -moz-appearance none
+  -webkit-appearance none
+
+button, input[type='submit'], label[for], select
+  cursor pointer
+
+main, section
+  position relative

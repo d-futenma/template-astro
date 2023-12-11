@@ -1,0 +1,12 @@
+<div class="loader" data-loader></div>
+
+<style lang="stylus" is:global>
+  .loader
+    absolute top left
+    background #222222
+    size 100%
+    z-index 100
+
+    .is-loaded &
+      alpha(0, 0.5)
+</style>
