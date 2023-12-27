@@ -5,6 +5,7 @@
 
 - [Astro](https://astro.build/)
 - [Stylus](https://stylus-lang.com/)
+- [Prettier](https://prettier.io/)
 - [Markuplint](https://markuplint.dev/)
 
 ## 動作要件
@@ -21,35 +22,13 @@ npm i
 
 ## 開発用コマンド
 
-開発サーバーの起動:
-
-```
-npm run dev
-```
-
-本番用ビルド:
-
-```
-npm run build
-```
-
-ビルド後のプレビュー
-
-```
-npm run preview
-```
-
-ソースコードを整形:
-
-```
-npm run format
-```
-
-ソースコードの静的検証:
-
-```
-npm run lint
-```
+| コマンド               | アクション                                       |
+| :--------------------- | :----------------------------------------------- |
+| `npm run dev`          | 開発サーバーの起動。                             |
+| `npm run build`        | 本番用ビルド。                                   |
+| `npm run preview`      | 本番用ビルド後のプレビュー。                     |
+| `npm run format`       | ソースコードを整形。                             |
+| `npm run lint`         | ソースコードの静的検証。                         |
 
 ## ディレクトリ構成
 
