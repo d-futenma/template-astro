@@ -80,5 +80,8 @@ Thumb.db
 jsconfig.json
 
 # outDir
-dist
-htdocs
+# dist
+# htdocs
+
+# npm setting file
+.npmrc

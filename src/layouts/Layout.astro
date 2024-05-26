@@ -1,30 +1,30 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_OG_NAME, SITE_URL, SITE_OG_IMG, SITE_OG_TYPE, PUBLIC_DIR_IMG } from '../site.config';
+// @ts-nocheck
+import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType } from '../variables'
 import '../styles/style.styl'
-import SvgSprites from "../components/SvgSprites.astro";
-import Loader from '../components/Loader.astro';
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import SvgSprites from '../components/SvgSprites.astro'
+import Loader from '../components/Loader.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 
 const {
-  title = SITE_TITLE[0],
-  description = SITE_DESCRIPTION[0],
-  ogTitle = SITE_TITLE[1] ?? SITE_TITLE[0],
-  ogDescription = SITE_DESCRIPTION[1] ?? SITE_DESCRIPTION[0],
-  ogSiteName = SITE_OG_NAME,
-  ogUrl = SITE_URL,
-  ogImg = SITE_OG_IMG,
-  ogType = SITE_OG_TYPE,
-} = Astro.props;
+  siteTitle = siteTitle[0],
+  description = siteDescription[0],
+  ogTitle = siteTitle[1] ?? siteTitle[0],
+  ogDescription = siteDescription[1] ?? siteDescription[0],
+  ogUrl = siteUrl,
+  ogImg,
+  bodyClass
+} = Astro.props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <title>{title}</title>
+    <title>{siteTitle}</title>
     <meta name="description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content={ogTitle} />
@@ -33,10 +33,10 @@ const {
     <meta property="og:url" content={ogUrl} />
     <meta property="og:image" content={ogImg} />
     <meta property="og:type" content={ogType} />
-    <link rel="icon" type="image/svg+xml" href={`${PUBLIC_DIR_IMG}favicon/favicon.svg`} />
-    <script src=../scripts/main.js></script>
+    <link rel="shortcut icon" type="image/ico" href='/assets/img/favicon/favicon.ico'>
+    <script src="../scripts/main.js"></script>
   </head>
-  <body>
+  <body class={bodyClass}>
     <SvgSprites />
     <Loader />
     <div class="wrapper">

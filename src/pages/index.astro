@@ -1,6 +1,10 @@
 ---
+// @ts-nocheck
 import Layout from '../layouts/Layout.astro'
 
-const SITE_TITLE = 'Home';
+const siteTitle = 'Home'
+const bodyClass = 'page-home';
 ---
-<Layout title={SITE_TITLE}></Layout>
+
+<Layout siteTitle={siteTitle} bodyClass={bodyClass}>
+</Layout>

@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write .",
+    "format": "prettier -w . --cache",
     "lint": "markuplint \"./src/**/*.astro\""
   },
   "repository": {
@@ -15,10 +15,7 @@
     "url": "git+https://github.com/d-futenma/template-astro"
   },
   "dependencies": {
-    "astro": "^4.0.3"
-  },
-  "volta": {
-    "node": "18.16.1"
+    "astro": "^4.9.1"
   },
   "devDependencies": {
     "@markuplint/astro-parser": "^3.12.0",
