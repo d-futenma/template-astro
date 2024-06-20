@@ -1,4 +1,3 @@
-// @ts-nocheck
 import path from 'path'
 import url from 'url'
 import { defineConfig } from 'astro/config'

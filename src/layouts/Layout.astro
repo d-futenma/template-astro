@@ -1,14 +1,14 @@
 ---
 // @ts-nocheck
-import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType } from '../variables'
+import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType, dirImg } from '../variables'
 import '../styles/style.styl'
 import SvgSprites from '../components/SvgSprites.astro'
 import Loader from '../components/Loader.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import Header from './Header.astro'
+import Footer from './Footer.astro'
 
 const {
-  siteTitle = siteTitle[0],
+  title = siteTitle[0],
   description = siteDescription[0],
   ogTitle = siteTitle[1] ?? siteTitle[0],
   ogDescription = siteDescription[1] ?? siteDescription[0],
@@ -24,7 +24,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <title>{siteTitle}</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content={ogTitle} />
@@ -33,7 +33,7 @@ const {
     <meta property="og:url" content={ogUrl} />
     <meta property="og:image" content={ogImg} />
     <meta property="og:type" content={ogType} />
-    <link rel="shortcut icon" type="image/ico" href='/assets/img/favicon/favicon.ico'>
+    <link rel="shortcut icon" type="image/ico" href={`${dirImg}favicon/favicon.svg`}>
     <script src="../scripts/main.js"></script>
   </head>
   <body class={bodyClass}>
@@ -48,3 +48,4 @@ const {
     </div>
   </body>
 </html>
+
