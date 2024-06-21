@@ -1,7 +1,7 @@
 import path from 'path'
 import url from 'url'
 import { defineConfig } from 'astro/config'
-import { siteUrl } from './src/variables'
+import { siteUrl } from './src/site.config'
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
 

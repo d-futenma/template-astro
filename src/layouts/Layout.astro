@@ -1,9 +1,8 @@
 ---
 // @ts-nocheck
-import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType, dirImg } from '../variables'
+import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType, dirImg } from '../site.config'
 import '../styles/style.styl'
 import SvgSprites from '../components/SvgSprites.astro'
-import Loader from '../components/Loader.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
 
@@ -38,7 +37,6 @@ const {
   </head>
   <body class={bodyClass}>
     <SvgSprites />
-    <Loader />
     <div class="wrapper">
       <Header />
       <main>
