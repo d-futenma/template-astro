@@ -1,0 +1,51 @@
+---
+import imageSize from 'image-size';
+import config from '../config';
+
+interface props {
+  src: string;
+  alt: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'sync' | 'async' | 'auto';
+  retina?: boolean;
+}
+
+const {
+  src,
+  alt,
+  loading = 'lazy',
+  decoding = 'async',
+  retina = true,
+} = Astro.props as props;
+
+const ext = src.split('.').pop()?.toLowerCase();
+
+const imagePath = (sizePrefix = ''): string => {
+  return `${config.path.image.dir}${sizePrefix}${src}`.replace(/\/+/g, '/');
+}
+
+const retinaImagePath = (sizePrefix = ''): string => {
+  const retinaFilename = src.replace(`.${ext}`, `@2x.${ext}`).split('/').pop();
+  return `${config.path.image.dir}${sizePrefix}${retinaFilename}`.replace(/\/+/g, '/');
+}
+
+const pathImg = imagePath();
+const imageSizes = imageSize(`public${pathImg}`);
+---
+
+<picture>
+  <source
+    media={`(min-width: ${config.breakPoint.md}px)`}
+    srcset={`${imagePath(config.path.image.md)}${retina ? `, ${retinaImagePath(config.path.image.md)} 2x` : ''}`}
+    width={imageSizes.width}
+    height={imageSizes.height}
+  />
+  <img
+    src={imagePath(config.path.image.sm)}
+    alt={alt}
+    width={imageSizes.width}
+    height={imageSizes.height}
+    loading={loading}
+    decoding={decoding}
+  />
+</picture>

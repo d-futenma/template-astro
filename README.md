@@ -36,12 +36,12 @@ npm i
 ├── htdocs/             # ビルドしたファイルの出力先
 ├── public/             # 静的ファイルを格納するディレクトリ
 ├── src/                # サイト本体のソースコード
-│   ├── components/     # 再利用可能なUIコンポーネント
-│   ├── layouts/        # ページのレイアウトを定義するコンポーネント
-│   ├── pages/          # サイトの各ページに対応するコンポーネント
-│   ├── scripts/        # JavaScriptファイルを格納するディレクトリ
-│   ├── styles/         # CSS（Stylus）を格納するディレクトリ
-│   └── site.config.js  # サイトの設定や変数を定義するファイル
+│   ├── components/    # 再利用可能なUIコンポーネント
+│   ├── config/        # サイトの設定や変数を定義するファイル
+│   ├── layouts/       # ページのレイアウトを定義するコンポーネント
+│   ├── pages/         # サイトの各ページに対応するコンポーネント
+│   ├── scripts/       # JavaScriptファイルを格納するディレクトリ
+│   └── styles/        # CSS（Stylus）を格納するディレクトリ
 ├── astro.config.mjs    # Astroプロジェクトの設定ファイル
 ├── package.json        # プロジェクトの依存関係やスクリプトを定義
 └── tsconfig.json       # TypeScriptのコンパイラオプションを設定

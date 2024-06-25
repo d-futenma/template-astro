@@ -1,12 +1,12 @@
+import { defineConfig } from 'astro/config'
 import path from 'path'
 import url from 'url'
-import { defineConfig } from 'astro/config'
-import { siteUrl } from './src/site.config'
+import config from './src/config'
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  site: siteUrl,
+  site: config.siteUrl,
   base: '/',
   server: {
     port: 3000,
@@ -20,6 +20,11 @@ export default defineConfig({
     inlineStylesheets: 'never',
   },
   vite: {
+    resolve: {
+      alias: {
+        '@/': `${path.resolve(dirName, 'src')}/`
+      },
+    },
     css: {
       preprocessorOptions: {
         stylus: {

@@ -1,18 +1,21 @@
 ---
 // @ts-nocheck
-import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType, dirImg } from '../site.config'
-import '../styles/style.styl'
+import config from '../config';
 import SvgSprites from '../components/SvgSprites.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
+import '../styles/style.styl'
 
+const { siteUrl, meta, path } = config;
 const {
-  title = siteTitle[0],
-  description = siteDescription[0],
-  ogTitle = siteTitle[1] ?? siteTitle[0],
-  ogDescription = siteDescription[1] ?? siteDescription[0],
+  title = meta.title[0],
+  description = meta.description[0],
+  ogTitle = meta.title[1] ?? meta.title[0],
+  ogDescription = meta.description[1] ?? meta.description[0],
+  ogSiteName = meta.ogSiteName,
   ogUrl = siteUrl,
-  ogImg,
+  ogImage = meta.ogImage,
+  ogType = meta.ogType,
   bodyClass
 } = Astro.props
 ---
@@ -30,9 +33,9 @@ const {
     <meta property="og:description" content={ogDescription} />
     <meta property="og:site_name" content={ogSiteName} />
     <meta property="og:url" content={ogUrl} />
-    <meta property="og:image" content={ogImg} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:type" content={ogType} />
-    <link rel="shortcut icon" type="image/ico" href={`${dirImg}favicon/favicon.svg`}>
+    <link rel="shortcut icon" type="image/ico" href={`${path.image}favicon/favicon.svg`}>
     <script src="../scripts/main.js"></script>
   </head>
   <body class={bodyClass}>
