@@ -2,7 +2,7 @@
 import imageSize from 'image-size';
 import config from '../config';
 
-interface props {
+interface ImageProps {
   src: string;
   alt: string;
   loading?: 'eager' | 'lazy';
@@ -10,41 +10,38 @@ interface props {
   retina?: boolean;
 }
 
-const {
-  src,
-  alt,
-  loading = 'lazy',
-  decoding = 'async',
-  retina = true,
-} = Astro.props as props;
+const { src, alt, loading = 'lazy', decoding = 'async', retina = true } = Astro.props as ImageProps;
+const { breakPoint, path } = config;
 
 const ext = src.split('.').pop()?.toLowerCase();
 
 const imagePath = (sizePrefix = ''): string => {
-  return `${config.path.image.dir}${sizePrefix}${src}`.replace(/\/+/g, '/');
+  return `${path.image.dir}${sizePrefix}${src}`.replace(/\/+/g, '/')
 }
 
 const retinaImagePath = (sizePrefix = ''): string => {
   const retinaFilename = src.replace(`.${ext}`, `@2x.${ext}`).split('/').pop();
-  return `${config.path.image.dir}${sizePrefix}${retinaFilename}`.replace(/\/+/g, '/');
+  return `${path.image.dir}${sizePrefix}${retinaFilename}`.replace(/\/+/g, '/');
 }
 
-const pathImg = imagePath();
-const imageSizes = imageSize(`public${pathImg}`);
+const imageSizes = (path: string) => imageSize(`public${path}`);
+
+const mdImageSizes = imageSizes(imagePath(path.image.md));
+const smImageSizes = imageSizes(imagePath(path.image.sm));
 ---
 
 <picture>
   <source
-    media={`(min-width: ${config.breakPoint.md}px)`}
-    srcset={`${imagePath(config.path.image.md)}${retina ? `, ${retinaImagePath(config.path.image.md)} 2x` : ''}`}
-    width={imageSizes.width}
-    height={imageSizes.height}
+    media={`(min-width: ${breakPoint.md}px)`}
+    srcset={`${imagePath(path.image.md)}${retina ? `, ${retinaImagePath(path.image.md)} 2x` : ''}`}
+    width={smImageSizes.width}
+    height={smImageSizes.height}
   />
   <img
-    src={imagePath(config.path.image.sm)}
+    src={imagePath(path.image.sm)}
     alt={alt}
-    width={imageSizes.width}
-    height={imageSizes.height}
+    width={mdImageSizes.width}
+    height={mdImageSizes.height}
     loading={loading}
     decoding={decoding}
   />
