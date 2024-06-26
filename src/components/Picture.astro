@@ -15,25 +15,21 @@ const { breakPoint, path } = config;
 
 const ext = src.split('.').pop()?.toLowerCase();
 
-const imagePath = (sizePrefix = ''): string => {
-  return `${path.image.dir}${sizePrefix}${src}`.replace(/\/+/g, '/')
+const imagePath = (sizePrefix = '', isRetina = false): string => {
+  const filename = isRetina ? src.replace(`.${ext}`, `@2x.${ext}`) : src;
+  return `${filename.substring(0, filename.lastIndexOf('/'))}${sizePrefix}${filename.substring(filename.lastIndexOf('/'))}`.replace(/\/+/g, '/');
 }
 
-const retinaImagePath = (sizePrefix = ''): string => {
-  const retinaFilename = src.replace(`.${ext}`, `@2x.${ext}`).split('/').pop();
-  return `${path.image.dir}${sizePrefix}${retinaFilename}`.replace(/\/+/g, '/');
-}
+const getImageSizes = (path: string) => imageSize(`public${path}`);
 
-const imageSizes = (path: string) => imageSize(`public${path}`);
-
-const mdImageSizes = imageSizes(imagePath(path.image.md));
-const smImageSizes = imageSizes(imagePath(path.image.sm));
+const mdImageSizes = getImageSizes(imagePath(path.image.md));
+const smImageSizes = getImageSizes(imagePath(path.image.sm));
 ---
 
 <picture>
   <source
     media={`(min-width: ${breakPoint.md}px)`}
-    srcset={`${imagePath(path.image.md)}${retina ? `, ${retinaImagePath(path.image.md)} 2x` : ''}`}
+    srcset={`${imagePath(path.image.md)}${retina ? `, ${imagePath(path.image.md, true)} 2x` : ''}`}
     width={mdImageSizes.width}
     height={mdImageSizes.height}
   />
