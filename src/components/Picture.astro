@@ -34,14 +34,14 @@ const smImageSizes = imageSizes(imagePath(path.image.sm));
   <source
     media={`(min-width: ${breakPoint.md}px)`}
     srcset={`${imagePath(path.image.md)}${retina ? `, ${retinaImagePath(path.image.md)} 2x` : ''}`}
-    width={smImageSizes.width}
-    height={smImageSizes.height}
+    width={mdImageSizes.width}
+    height={mdImageSizes.height}
   />
   <img
     src={imagePath(path.image.sm)}
     alt={alt}
-    width={mdImageSizes.width}
-    height={mdImageSizes.height}
+    width={smImageSizes.width}
+    height={smImageSizes.height}
     loading={loading}
     decoding={decoding}
   />
