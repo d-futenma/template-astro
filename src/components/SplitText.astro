@@ -35,7 +35,7 @@ const characters = splitText(text);
 {
   characters.map((item) =>
     item.type === 'char' ? (
-      <Tag class={`${className} ${className}-${item.index}`} {...otherProps} set:html={item.value}></Tag>
+      <Tag class={`${className} ${className}-${item.index}`} set:html={item.value} {...otherProps}></Tag>
     ) : (
       <br />
     )
