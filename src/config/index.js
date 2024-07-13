@@ -8,16 +8,20 @@ const config = {
     ogType     : 'website',
   },
   breakPoint: {
-    sm : 767,
-    md : 768,
+    sm: 767,
+    md: 768,
+  },
+  image: {
+    smDir   : '/',
+    mdDir   : '/md/',
+    loading : 'lazy',
+    decoding: 'async',
+    format  : 'webp',
+    retina  : true,
   },
   path: {
-    image: {
-      dir: '/assets/img/',
-      sm : '/',
-      md : '/md/',
-    }
+    image: '/assets/img/',
   },
-};
+}
 
-export default config;
+export default config

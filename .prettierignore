@@ -1,5 +1,11 @@
+.astro/settings.json
 .markuplintrc
+.prettierrc.cjs
+astro.config.mjs
 node_modules
-public
 package-lock.json
 package.json
+public
+src
+tailwind.config.mjs
+tsconfig.json

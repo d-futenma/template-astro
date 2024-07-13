@@ -1,35 +1,23 @@
 ---
-interface SplitTextProps {
-  text: string;
-  className?: string;
-  Tag?: keyof HTMLElementTagNameMap;
-  [key: string]: any;
-}
+// @ts-nocheck
+const { text, className = 'char', Tag = 'span', ...otherProps } = Astro.props
 
-interface Character {
-  type: 'char' | 'break';
-  value: string;
-  index?: number;
-}
-
-const { text, className = 'char', Tag = 'span', ...otherProps } = Astro.props as SplitTextProps;
-
-const splitText = (text: string): Character[] => {
-  const characters: Character[] = [];
-  let charIndex = 1;
+const splitText = (text) => {
+  const characters = []
+  let charIndex = 1
 
   for (const part of text.split('<br>')) {
     if (characters.length > 0) characters.push({ type: 'break', value: '<br>' })
 
     for (const char of part) {
       const nbsp = char === ' ' && '&nbsp;'
-      characters.push({ type: 'char', value: nbsp ? nbsp : char, index: charIndex++ });
+      characters.push({ type: 'char', value: nbsp ? nbsp : char, index: charIndex++ })
     }
   }
-  return characters;
+  return characters
 }
 
-const characters = splitText(text);
+const characters = splitText(text)
 ---
 
 {

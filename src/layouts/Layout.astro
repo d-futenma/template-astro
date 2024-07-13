@@ -1,20 +1,18 @@
 ---
-import config from '../config';
+import config from '../config'
 import SvgSprites from '../components/SvgSprites.astro'
 import Header from '../layouts/Header.astro'
 import Footer from '../layouts/Footer.astro'
-import '../styles/style.styl'
 
-const { siteUrl, meta, path } = config;
 const {
-  title = meta.title[0],
-  description = meta.description[0],
-  ogTitle = meta.title[1] ?? meta.title[0],
-  ogDescription = meta.description[1] ?? meta.description[0],
-  ogSiteName = meta.ogSiteName,
-  ogUrl = siteUrl,
-  ogImage = meta.ogImage,
-  ogType = meta.ogType,
+  title = config.meta.title[0],
+  description = config.meta.description[0],
+  ogTitle = config.meta.title[1] ?? config.meta.title[0],
+  ogDescription = config.meta.description[1] ?? config.meta.description[0],
+  ogSiteName = config.meta.ogSiteName,
+  ogUrl = config.siteUrl,
+  ogImage = config.meta.ogImage,
+  ogType = config.meta.ogType,
   bodyClass
 } = Astro.props
 ---
@@ -34,12 +32,12 @@ const {
     <meta property="og:url" content={ogUrl} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content={ogType} />
-    <link rel="shortcut icon" type="image/ico" href={`${path.image}favicon/favicon.svg`}>
+    {/* <link rel="shortcut icon" type="image/ico" href={`${config.path.image}favicon/favicon.svg`} /> */}
     <script src="../scripts/main.js"></script>
   </head>
   <body class={bodyClass}>
     <SvgSprites />
-    <div class="wrapper">
+    <div>
       <Header />
       <main>
         <slot />

@@ -1,44 +1,68 @@
 ---
-import imageSize from 'image-size';
+// @ts-nocheck
+import { getImage } from 'astro:assets';
 import config from '../config';
 
-interface ImageProps {
-  src: string;
-  alt: string;
-  loading?: 'eager' | 'lazy';
-  decoding?: 'sync' | 'async' | 'auto';
-  retina?: boolean;
-  [key: string]: any;
-}
+const {
+  src,
+  alt = '',
+  loading = config.image.loading,
+  decoding = config.image.decoding,
+  retina = config.image.retina,
+  format = config.image.format,
+  ...otherProps
+} = Astro.props;
 
-const { src, alt, loading = 'lazy', decoding = 'async', retina = true, ...otherProps } = Astro.props as ImageProps;
-const { breakPoint, path } = config;
+const extractFileDetails = (filePath) => {
+  const lastIndex = filePath.lastIndexOf('/');
+  const dir = filePath.substring(0, lastIndex + 1);
+  const name = filePath.substring(lastIndex + 1);
+  const baseName = name.substring(0, name.lastIndexOf('.'));
+  const ext = name.substring(name.lastIndexOf('.') + 1);
+  return { dir, baseName, ext };
+};
 
-const ext = src.split('.').pop()?.toLowerCase();
+const { dir, baseName, ext } = extractFileDetails(src);
 
-const imagePath = (sizePrefix = '', isRetina = false): string => {
-  const filename = isRetina ? src.replace(`.${ext}`, `@2x.${ext}`) : src;
-  return `${filename.substring(0, filename.lastIndexOf('/'))}${sizePrefix}${filename.substring(filename.lastIndexOf('/'))}`.replace(/\/+/g, '/');
-}
+const normalizeSlashes = (input) => input.replace(/\/+/g, '/');
 
-const getImageSizes = (path: string) => imageSize(`public${path}`);
+const isSvg = ext === 'svg';
 
-const mdImageSizes = getImageSizes(imagePath(path.image.md));
-const smImageSizes = getImageSizes(imagePath(path.image.sm));
+const loadImages = async (basePath) => {
+  const images = import.meta.glob('/src/assets/img/**/*');
+
+  const optimizeImage = async (path) => {
+    try {
+      const result = await images[path]();
+      return isSvg ? result.default : await getImage({ src: result.default, format });
+    } catch (error) {
+      console.error(`image not found: ${path}`);
+      return null;
+    }
+  };
+
+  const optimizedImage = await optimizeImage(normalizeSlashes(`/src${basePath}${baseName}.${ext}`));
+  const optimizedMdImage = await optimizeImage(normalizeSlashes(`/src${basePath}${config.image.mdDir}${baseName}.${ext}`));
+  const optimizedRetinaImage = retina ? await optimizeImage(normalizeSlashes(`/src${basePath}${config.image.mdDir}${baseName}@2x.${ext}`)) : null;
+
+  return { optimizedImage, optimizedMdImage, optimizedRetinaImage };
+};
+
+const { optimizedImage, optimizedMdImage, optimizedRetinaImage } = await loadImages(dir);
 ---
 
 <picture>
   <source
-    media={`(min-width: ${breakPoint.md}px)`}
-    srcset={`${imagePath(path.image.md)}${retina ? `, ${imagePath(path.image.md, true)} 2x` : ''}`}
-    width={mdImageSizes.width}
-    height={mdImageSizes.height}
+    media={`(min-width: ${config.breakPoint.md}px)`}
+    srcset={`${optimizedMdImage.src}${retina ? `, ${optimizedRetinaImage.src} 2x` : ''}`}
+    width={isSvg ? optimizedMdImage.width : optimizedMdImage.attributes.width}
+    height={isSvg ? optimizedMdImage.height : optimizedMdImage.attributes.height}
   />
   <img
-    src={imagePath(path.image.sm)}
+    src={optimizedImage.src}
     alt={alt}
-    width={smImageSizes.width}
-    height={smImageSizes.height}
+    width={isSvg ? optimizedImage.width : optimizedImage.attributes.width}
+    height={isSvg ? optimizedImage.height : optimizedImage.attributes.height}
     loading={loading}
     decoding={decoding}
     {...otherProps}
