@@ -3,15 +3,7 @@
 import { getImage } from 'astro:assets';
 import config from '../config';
 
-const {
-  src,
-  alt = '',
-  loading = config.image.loading,
-  decoding = config.image.decoding,
-  retina = config.image.retina,
-  format = config.image.format,
-  ...otherProps
-} = Astro.props;
+const { src, alt = '', loading = config.image.loading, decoding = config.image.decoding, retina = config.image.retina, format = config.image.format, ...otherProps } = Astro.props;
 
 const extractFileDetails = (filePath) => {
   const lastIndex = filePath.lastIndexOf('/');
@@ -23,8 +15,6 @@ const extractFileDetails = (filePath) => {
 };
 
 const { dir, baseName, ext } = extractFileDetails(src);
-
-const normalizeSlashes = (input) => input.replace(/\/+/g, '/');
 
 const isSvg = ext === 'svg';
 
@@ -41,9 +31,11 @@ const loadImages = async (basePath) => {
     }
   };
 
+  const normalizeSlashes = (input) => input.replace(/\/+/g, '/');
+
   const optimizedImage = await optimizeImage(normalizeSlashes(`/src${basePath}${baseName}.${ext}`));
   const optimizedMdImage = await optimizeImage(normalizeSlashes(`/src${basePath}${config.image.mdDir}${baseName}.${ext}`));
-  const optimizedRetinaImage = retina ? await optimizeImage(normalizeSlashes(`/src${basePath}${config.image.mdDir}${baseName}@2x.${ext}`)) : null;
+  const optimizedRetinaImage = (retina && !isSvg) ? await optimizeImage(normalizeSlashes(`/src${basePath}${config.image.mdDir}${baseName}@2x.${ext}`)) : null;
 
   return { optimizedImage, optimizedMdImage, optimizedRetinaImage };
 };
@@ -51,20 +43,40 @@ const loadImages = async (basePath) => {
 const { optimizedImage, optimizedMdImage, optimizedRetinaImage } = await loadImages(dir);
 ---
 
-<picture>
-  <source
-    media={`(min-width: ${config.breakPoint.md}px)`}
-    srcset={`${optimizedMdImage.src}${retina ? `, ${optimizedRetinaImage.src} 2x` : ''}`}
-    width={isSvg ? optimizedMdImage.width : optimizedMdImage.attributes.width}
-    height={isSvg ? optimizedMdImage.height : optimizedMdImage.attributes.height}
-  />
-  <img
-    src={optimizedImage.src}
-    alt={alt}
-    width={isSvg ? optimizedImage.width : optimizedImage.attributes.width}
-    height={isSvg ? optimizedImage.height : optimizedImage.attributes.height}
-    loading={loading}
-    decoding={decoding}
-    {...otherProps}
-  />
-</picture>
+{isSvg ? (
+  <picture>
+    <source
+      media={`(min-width: ${config.breakPoint.md}px)`}
+      srcset={`${optimizedMdImage.src}`}
+      width={optimizedMdImage.width}
+      height={optimizedMdImage.height}
+    />
+    <img
+      src={optimizedImage.src}
+      alt={alt}
+      width={optimizedImage.width}
+      height={optimizedImage.height}
+      loading={loading}
+      decoding={decoding}
+      {...otherProps}
+    />
+  </picture>
+) : (
+  <picture>
+    <source
+      media={`(min-width: ${config.breakPoint.md}px)`}
+      srcset={`${optimizedMdImage.src}${retina ? `, ${optimizedRetinaImage.src} 2x` : ''}`}
+      width={optimizedMdImage.attributes.width}
+      height={optimizedMdImage.attributes.height}
+    />
+    <img
+      src={optimizedImage.src}
+      alt={alt}
+      width={optimizedImage.attributes.width}
+      height={optimizedImage.attributes.height}
+      loading={loading}
+      decoding={decoding}
+      {...otherProps}
+    />
+  </picture>
+)}

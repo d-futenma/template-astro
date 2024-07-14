@@ -32,12 +32,12 @@ npm i
 ```
 ├─ public/             # 静的ファイルを格納するディレクトリ
 ├─ src/                # サイト本体のソースコード
-│   ├─ components/    # 再利用可能なUIコンポーネント
-│   ├─ config/        # サイトの設定や変数を定義するファイル
-│   ├─ layouts/       # ページのレイアウトを格納するディレクトリ
-│   ├─ pages/         # サイトのページを格納するディレクトリ
-│   ├─ scripts/       # JavaScriptファイルを格納するディレクトリ
-│   └─ styles/        # CSSを格納するディレクトリ
+│   ├─ components/     # 再利用可能なUIコンポーネント
+│   ├─ config/         # サイトの設定や変数を定義するファイル
+│   ├─ layouts/        # ページのレイアウトを格納するディレクトリ
+│   ├─ pages/          # サイトのページを格納するディレクトリ
+│   ├─ scripts/        # JavaScriptファイルを格納するディレクトリ
+│   └─ styles/         # CSSを格納するディレクトリ
 ├─ astro.config.mjs    # Astroの設定ファイル
 ├─ package.json        # プロジェクトの設定、依存関係、スクリプトなどを管理するためのファイル
 ├─ tailwind.config.mjs # Tailwind CSSの設定ファイル
