@@ -1,10 +1,11 @@
 /** @type {import("prettier").Config} */
 module.exports = {
-  plugins: ['prettier-plugin-astro'],
+  printWidth: 1000,
   tabWidth: 2,
   useTabs: false,
   semi: false,
   trailingComma: 'all',
   singleQuote: true,
-  printWidth: 1000,
+  endOfLine: "lf", // lf|crlf|cr|auto
+  plugins: ['prettier-plugin-astro'],
 }

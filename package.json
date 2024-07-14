@@ -5,6 +5,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "build:format": "astro build && prettier -w . --cache",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint ./src && markuplint \"./src/**/*.astro\"",
