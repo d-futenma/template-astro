@@ -1,0 +1,63 @@
+---
+import config from '../../config';
+import extractFileDetails from '../../utils/extractFileDetails';
+import normalizeSlashes from '../../utils/normalizeSlashes';
+import optimizeImage from '../../utils/optimizeImage';
+
+const { src, alt = '', loading = config.image.loading, decoding = config.image.decoding, retina = config.image.retina, format = config.image.format, ...otherProps } = Astro.props;
+const { dir, baseName, ext } = extractFileDetails(src);
+const isSvg = ext === 'svg';
+const importedImages = import.meta.glob('/src/assets/img/**/*');
+
+const optimizeImages = async () => {
+  const imagePath = normalizeSlashes(`/src${src}`)
+  const imageMdPath = normalizeSlashes(`/src${dir}${config.image.mdDir}${baseName}.${ext}`)
+  const imageRetinaPath = (retina && !isSvg) ? normalizeSlashes(`/src${dir}${config.image.mdDir}${baseName}.${ext}`) : null
+  
+  const optimizedImage = await optimizeImage(imagePath, importedImages, isSvg, format);
+  const optimizedImageMd = await optimizeImage(imageMdPath, importedImages, isSvg, format);
+  const optimizedImageRetina = imageRetinaPath ? await optimizeImage(imageRetinaPath, importedImages, isSvg, format) : null;
+
+  return { optimizedImage, optimizedImageMd, optimizedImageRetina };
+};
+
+const { optimizedImage, optimizedImageMd, optimizedImageRetina } = await optimizeImages();
+---
+
+{isSvg ? (
+  <picture>
+    <source
+      media={`(min-width: ${config.breakPoint.md}px)`}
+      srcset={`${optimizedImageMd.src}`}
+      width={optimizedImageMd.width}
+      height={optimizedImageMd.height}
+    />
+    <img
+      src={optimizedImage.src}
+      alt={alt}
+      width={optimizedImage.width}
+      height={optimizedImage.height}
+      loading={loading}
+      decoding={decoding}
+      {...otherProps}
+    />
+  </picture>
+) : (
+  <picture>
+    <source
+      media={`(min-width: ${config.breakPoint.md}px)`}
+      srcset={`${optimizedImageMd.src}${retina ? `, ${optimizedImageRetina.src} 2x` : ''}`}
+      width={optimizedImageMd.attributes.width}
+      height={optimizedImageMd.attributes.height}
+    />
+    <img
+      src={optimizedImage.src}
+      alt={alt}
+      width={optimizedImage.attributes.width}
+      height={optimizedImage.attributes.height}
+      loading={loading}
+      decoding={decoding}
+      {...otherProps}
+    />
+  </picture>
+)}
