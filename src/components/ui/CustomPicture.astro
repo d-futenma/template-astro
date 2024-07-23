@@ -1,16 +1,16 @@
 ---
-import config from '../../config';
-import extractFileDetails from '../../utils/extractFileDetails';
-import normalizeSlashes from '../../utils/normalizeSlashes';
-import optimizeImage from '../../utils/optimizeImage';
+import config from '../../config'
+import extractFileDetails from '../../utilities/extractFileDetails';
+import normalizeSlashes from '../../utilities/normalizeSlashes';
+import optimizeImage from '../../utilities/optimizeImage';
 
 const { src, alt = '', loading = config.image.loading, decoding = config.image.decoding, retina = config.image.retina, format = config.image.format, ...otherProps } = Astro.props;
 const { dir, baseName, ext } = extractFileDetails(src);
 const isSvg = ext === 'svg';
 const importedImages = import.meta.glob('/src/assets/img/**/*');
 
-const optimizeImages = async () => {
-  const imagePath = normalizeSlashes(`/src${src}`)
+const optimize = async () => {
+  const imagePath = normalizeSlashes(`/src${dir}${config.image.smDir}${baseName}.${ext}`)
   const imageMdPath = normalizeSlashes(`/src${dir}${config.image.mdDir}${baseName}.${ext}`)
   const imageRetinaPath = (retina && !isSvg) ? normalizeSlashes(`/src${dir}${config.image.mdDir}${baseName}.${ext}`) : null
   
@@ -21,7 +21,7 @@ const optimizeImages = async () => {
   return { optimizedImage, optimizedImageMd, optimizedImageRetina };
 };
 
-const { optimizedImage, optimizedImageMd, optimizedImageRetina } = await optimizeImages();
+const { optimizedImage, optimizedImageMd, optimizedImageRetina } = await optimize();
 ---
 
 {isSvg ? (

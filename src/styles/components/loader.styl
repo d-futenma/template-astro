@@ -1,0 +1,14 @@
+@media (scripting none)
+  .loader
+    display none
+
+.loader
+  background #000000
+  fixed top left
+  size 100%
+  z-index calc(infinity)
+  .is-loaded &
+    opacity 0
+    pointer-events auto
+    transition opacity 0.5s
+    visibility visible

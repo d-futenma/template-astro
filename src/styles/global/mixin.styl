@@ -1,0 +1,108 @@
+media($device)
+  unless ($breakpoint[$device])
+    error($device + 'is not defined.')
+  @media $breakpoint[$device]
+    {block}
+
+relative()
+  _apply-position('relative', arguments)
+
+absolute()
+  _apply-position('absolute', arguments)
+
+fixed()
+  _apply-position('fixed', arguments)
+
+sticky()
+  _apply-position('sticky', arguments)
+
+size($width, $height = $width)
+  height _add-pixel($height)
+  width _add-pixel($width)
+
+vw-sm($val)
+  _calc-vw($val, $viewport-sm)
+
+vw-md($val)
+  _calc-vw($val, $viewport-md)
+
+calc-line-height($font-size = null, $line-height = $font-size)
+  line-height: ($line-height / $font-size)
+
+calc-letter-spacing($letter-spacing)
+  letter-spacing ($letter-spacing / 1000) em
+
+font-pixel-set($font-size, $line-height = null, $letter-spacing = null)
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
+  font-size $font-size px
+
+font-rem-set($font-size, $line-height = null, $letter-spacing = null)
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
+  font-size ($font-size / 10) rem
+
+font-vw-set($font-size, $line-height = null, $letter-spacing = null)
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
+  font-size ($font-size / $viewport-sm * 100) vw
+
+text-replace()
+  overflow hidden
+  text-decoration none
+  text-indent 100%
+  white-space nowrap
+
+second-line-indent($width)
+  padding-left $width
+  text-indent -1 * $width
+
+// @example
+// ----------
+// bg-img($image-path + "example.jpg", left, top, no-repeat, #fff, cover)
+// ----------
+bg-img($file-name, $position-x = left, $position-y = top, $repeat-type = null, $bg-color = null, $bg-size = false)
+  background url($file-name) $position-x $position-y $repeat-type $bg-color
+  if ($bg-size)
+    background-size $bg-size
+
+// @example
+// ----------
+// bg-img-multiple({
+// '1': $image-path + "example-1.jpg" (left top) no-repeat
+// '2': $image-path + "example-2.jpg" (left top) no-repeat #fff
+// }, {
+// '1': (50px 100px)
+// '2': (50px 100px)
+// })
+// ----------
+bg-img-multiple($imagesHash, $sizesHash = false)
+  $images = null
+  for i, props in $imagesHash
+    for prop, j in props
+      if (j == 0)
+        if (i == 1)
+          $images = $images url(prop)
+        else
+          $images = $images, url(prop)
+      else
+        if (prop)
+          $images = $images prop
+  background $images
+  if ($sizesHash)
+    $sizes = null
+    for $i, $prop in $sizesHash
+      if ($prop)
+        if ($i == 1)
+          $sizes = $sizes $prop
+        else
+          $sizes = $sizes, $prop
+    background-size $sizes
+
+// @example
+// ----------
+// set-aspect-ratio(1920, 1080) -> aspect-ratio 16/9
+// ----------
+aspect-ratio-set($width, $height)
+  $divisor = _greatestCommonDivisor($width, $height)
+  $widthRatio = ($width / $divisor)
+  $heightRatio = ($height / $divisor)
+  aspect-ratio $widthRatio / $heightRatio
+  object-fit cover

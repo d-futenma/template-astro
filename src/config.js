@@ -1,5 +1,6 @@
 const config = {
   siteUrl: 'https://example.com/',
+  outDir : 'htdocs',
   meta: {
     title      : ['タイトル', 'ogタグ用タイトル'],
     description: ['ディスクリプション', 'ogディスクリプション'],
@@ -11,6 +12,9 @@ const config = {
     sm: 767,
     md: 768,
   },
+  path: {
+    image: '/assets/img/',
+  },
   image: {
     smDir   : '/',
     mdDir   : '/md/',
@@ -19,9 +23,9 @@ const config = {
     format  : 'webp',
     retina  : true,
   },
-  path: {
-    image: '/assets/img/',
-  },
+  deletes: [
+    'url-list'
+  ]
 }
 
 export default config

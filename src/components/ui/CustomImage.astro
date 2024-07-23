@@ -1,21 +1,21 @@
 ---
-import config from '../../config';
-import extractFileDetails from '../../utils/extractFileDetails';
-import normalizeSlashes from '../../utils/normalizeSlashes';
-import optimizeImage from '../../utils/optimizeImage';
+import config from '../../config'
+import extractFileDetails from '../../utilities/extractFileDetails';
+import normalizeSlashes from '../../utilities/normalizeSlashes';
+import optimizeImage from '../../utilities/optimizeImage';
 
 const { src, alt = '', loading = config.image.loading, decoding = config.image.decoding, format = config.image.format, ...otherProps } = Astro.props;
 const { ext } = extractFileDetails(src);
 const isSvg = ext === 'svg';
 const importedImages = import.meta.glob('/src/assets/img/**/*');
 
-const optimizeImages = async () => {
+const optimize = async () => {
   const imagePath = normalizeSlashes(`/src${src}`)
   const optimizedImage = await optimizeImage(imagePath, importedImages, isSvg, format)
   return { optimizedImage };
 };
 
-const { optimizedImage } = await optimizeImages();
+const { optimizedImage } = await optimize();
 ---
 
 <img

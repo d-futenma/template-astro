@@ -4,7 +4,7 @@
 以下のツールを採用しています。
 
 - [Astro](https://astro.build/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Stylus](https://stylus-lang.com/)
 - [ESLint](https://eslint.org/)
 - [Markuplint](https://markuplint.dev/)
 - [Prettier](https://prettier.io/)
@@ -39,15 +39,15 @@ npm i
 │  ├─ components/      # コンポーネントを格納するディレクトリ
 │  │  ├─ page/         # ページ固有のコンポーネントを格納するディレクトリ
 │  │  └─ ui/           # 再利用可能なUIコンポーネントを格納するディレクトリ
-│  ├─ config/          # サイトの設定を定義するファイル
+│  ├─ integrations/    # Astroインテグレーションを格納するディレクトリ
 │  ├─ layouts/         # ページのレイアウトを格納するディレクトリ
 │  ├─ pages/           # サイトのページを格納するディレクトリ
 │  ├─ scripts/         # JavaScriptファイルを格納するディレクトリ
 │  ├─ styles/          # CSSを格納するディレクトリ
-│  └─ utils/           # 汎用的なユーティリティ関数を格納するディレクトリ
+│  ├─ utilities/       # 汎用的なユーティリティ関数を格納するディレクトリ
+│  └─ config.js        # サイトの設定を定義するファイル
 ├─ astro.config.mjs    # Astroの設定ファイル
 ├─ eslint.config.mjs   # ESLintの設定ファイル
 ├─ package.json        # 依存パッケージを管理するためのファイル
-├─ tailwind.config.mjs # Tailwind CSSの設定ファイル
 └─ tsconfig.json       # TypeScriptの設定ファイル
 ```

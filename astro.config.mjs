@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
 import path from 'path'
 import url from 'url'
 import config from './src/config'
+import deleteDirectory from './src/integrations/deleteDirectory.js';
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
 
@@ -14,16 +14,28 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-  outDir: './htdocs',
+  outDir: config.outDir,
   compressHTML: false,
   build: {
     assets: 'assets',
     inlineStylesheets: 'never',
   },
+  devToolbar: {
+    enabled: false
+  },
   vite: {
     resolve: {
       alias: {
         '@/': `${path.resolve(dirName, 'src')}/`,
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        stylus: {
+          imports: [
+            path.resolve(dirName, './src/styles/global'),
+          ],
+        },
       },
     },
     build: {
@@ -44,5 +56,5 @@ export default defineConfig({
       },
     },
   },
-  integrations: [tailwind()],
+  integrations: [deleteDirectory(config.outDir, config.deletes)],
 })

@@ -1,0 +1,122 @@
+---
+const allPages = await Astro.glob('/src/pages/**/*.astro'); 
+let url
+
+const changeExtension = (filename) => filename.replace(/\.astro$/, '.html')
+
+const extractPath = (fullPath) => {
+  let path = fullPath.split('/src/pages/')[1];
+  return changeExtension(path);
+}
+
+const generateUrl = async (page) => {
+  url = page.url ? page.url : "/";
+
+  if (page.getStaticPaths) {
+    const paths = await page.getStaticPaths();
+
+    paths.forEach(path => {
+      if (page.file.includes('[...path].astro')) {
+        url = path.params.path;
+      }
+      pathList.push({
+        ...page,
+        url: url,
+        path: `${url}.html`
+      });
+    });
+  } else {
+    pathList.push({
+      ...page,
+      url,
+      path: extractPath(page.file)
+    });
+  }
+}
+let pathList = [];
+await Promise.all(allPages.map(generateUrl));
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL LIST</title>
+  </head>
+  <body class="page-url-list">
+    <div class="url-list-content">
+      <h1 class="url-list-heading">URL LIST</h1>
+      <ul class="url-list">
+        {pathList.map((item) => (
+          <li class="url-list-item"><a class="url-list-link" href={item.url}><span class="url-list-label">{item.path}</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </body>
+</html>
+
+<style lang="stylus">
+  .page-url-list
+    background-color #F5F5F5
+    color #333333
+    font-family 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif
+    padding vw-sm(50)
+    +media('md')
+      padding 50px
+
+  .url-list-content
+    margin-inline auto
+    +media('md')
+      max-width 960px
+
+  .url-list-heading
+    font-vw-set(30, 30)
+    font-weight bold
+    margin-bottom vw-sm(25)
+    text-align center
+    +media('md')
+      font-rem-set(20)
+      margin-bottom 20px
+
+  .url-list
+    border 1px solid #D7D7D7
+    border-radius 10px
+    overflow hidden
+
+  .url-list-item
+    font-vw-set(30)
+    background #FAFAFB
+    word-break break-all
+    &:not(:first-child)
+      border-top 1px solid #D7D7D7
+    &:nth-child(odd)
+      background #ffffff
+    +media('md')
+      font-rem-set(16, 16)
+
+  .url-list-link
+    color #333333
+    display block
+    height 100%
+    padding vw-sm(20)
+    +media('md')
+      padding 15px
+
+  .url-list-label
+    display block
+    padding-left 1.4em
+    position relative
+    +media('md')
+      padding-left 2em
+
+  .url-list-label
+    &::before
+      absolute top vw-sm(3) left
+      content '📱'
+      display block
+    +media('md')
+      &::before
+        content '🖥️'
+        top 1px
+</style>

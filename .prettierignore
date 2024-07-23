@@ -7,5 +7,4 @@ package-lock.json
 package.json
 public
 src
-tailwind.config.mjs
 tsconfig.json
