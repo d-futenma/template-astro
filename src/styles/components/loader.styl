@@ -1,6 +1,4 @@
-@media (scripting none)
-  .loader
-    display none
+$opacity-duration = 0.5s
 
 .loader
   background #000000
@@ -9,6 +7,9 @@
   z-index calc(infinity)
   .is-loaded &
     opacity 0
-    pointer-events auto
-    transition opacity 0.5s
-    visibility visible
+    transition opacity $opacity-duration, visibility 0s $opacity-duration
+    visibility hidden
+
+@media (scripting none)
+  .loader
+    display none

@@ -1,0 +1,4 @@
+---
+const { href, title = '', ...otherProps } = Astro.props;
+---
+<svg {...otherProps}>{title && <title>{title}</title>}<use href={`#${href}`}></use></svg>

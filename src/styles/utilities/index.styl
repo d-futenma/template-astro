@@ -1,7 +1,29 @@
 +media('sm')
-  .sm
+  .md
     display none
 
 +media('md')
-  .md
+  .sm
     display none
+
+/**
+ * see https://github.com/ampproject/amphtml/blob/2e9a940e78df8de38a6c06a0772aeaa4839a24d1/css/ampshared.css#L164-L194
+ */
+.alternative
+  block-size 4px !important
+  contain strict !important
+  display block !important
+  inline-size 4px !important
+  inset 0 !important
+  opacity 0 !important
+  pointer-events none !important
+  position fixed !important
+
+[data-hidden]
+  opacity 0
+  visibility hidden
+
+@media (scripting none)
+  [data-hidden]
+    opacity 1
+    visibility visible
