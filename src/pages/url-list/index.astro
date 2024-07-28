@@ -1,6 +1,6 @@
 ---
 const allPages = await Astro.glob('/src/pages/**/*.astro'); 
-let url
+let pathList = [];
 
 const changeExtension = (filename) => filename.replace(/\.astro$/, '.html')
 
@@ -10,30 +10,24 @@ const extractPath = (fullPath) => {
 }
 
 const generateUrl = async (page) => {
-  url = page.url ? page.url : "/";
+  let url = page.url ? page.url : '/';
 
   if (page.getStaticPaths) {
     const paths = await page.getStaticPaths();
 
     paths.forEach(path => {
-      if (page.file.includes('[...path].astro')) {
-        url = path.params.path;
+      const dynamicSegmentMatch = page.file.match(/\[\.\.\.(.+?)\]\.astro$/);
+      if (dynamicSegmentMatch) {
+        const dynamicSegment = dynamicSegmentMatch[1];
+        url = `/${path.params[dynamicSegment]}`;
       }
-      pathList.push({
-        ...page,
-        url: url,
-        path: `${url}.html`
-      });
+      pathList.push({ ...page, url, path: `${url}.html` });
     });
   } else {
-    pathList.push({
-      ...page,
-      url,
-      path: extractPath(page.file)
-    });
+    pathList.push({ ...page, url, path: extractPath(page.file) });
   }
 }
-let pathList = [];
+
 await Promise.all(allPages.map(generateUrl));
 ---
 
