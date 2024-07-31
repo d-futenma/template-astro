@@ -8,7 +8,7 @@ const config = {
     ogImage    : 'https://example.com/assets/img/og/og-img.jpg',
     ogType     : 'website',
   },
-  breakPoint: {
+  breakPoints: {
     sm: 767,
     md: 768,
   },

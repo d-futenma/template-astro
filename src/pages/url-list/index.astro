@@ -37,6 +37,103 @@ await Promise.all(allPages.map(generateUrl));
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>URL LIST</title>
+    <style is:inline>
+      .page-url-list {
+        background-color: #f5f5f5;
+        color: #333;
+        font-family:
+          Helvetica Neue,
+          Arial,
+          Hiragino Kaku Gothic ProN,
+          Hiragino Sans,
+          Meiryo,
+          sans-serif;
+        font-weight: 400;
+        padding: 6.666666666666667vw;
+      }
+      @media only screen and (min-width: 769px) {
+        .page-url-list {
+          padding: 50px;
+        }
+      }
+      .url-list-content {
+        margin-inline: auto;
+      }
+      @media only screen and (min-width: 769px) {
+        .url-list-content {
+          max-width: 960px;
+        }
+      }
+      .url-list-heading {
+        line-height: 1;
+        font-size: 4vw;
+        font-weight: 700;
+        margin-bottom: 3.333333333333333vw;
+        text-align: center;
+      }
+      @media only screen and (min-width: 769px) {
+        .url-list-heading {
+          font-size: 2rem;
+          margin-bottom: 20px;
+        }
+      }
+      .url-list {
+        border: 1px solid #d7d7d7;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .url-list-item {
+        font-size: 4vw;
+        background: #fafafb;
+        word-break: break-all;
+      }
+      .url-list-item:not(:first-child) {
+        border-top: 1px solid #d7d7d7;
+      }
+      .url-list-item:nth-child(odd) {
+        background: #fff;
+      }
+      @media only screen and (min-width: 769px) {
+        .url-list-item {
+          line-height: 1;
+          font-size: 1.6rem;
+        }
+      }
+      .url-list-link {
+        color: #333;
+        display: block;
+        height: 100%;
+        padding: 2.666666666666667vw;
+      }
+      @media only screen and (min-width: 769px) {
+        .url-list-link {
+          padding: 15px;
+        }
+      }
+      .url-list-label {
+        display: block;
+        padding-left: 1.4em;
+        position: relative;
+      }
+      @media only screen and (min-width: 769px) {
+        .url-list-label {
+          padding-left: 2em;
+        }
+      }
+      .url-list-label:before {
+        position: absolute;
+        top: 0.4vw;
+        left: 0;
+        content: '📱';
+        display: block;
+      }
+      @media only screen and (min-width: 769px) {
+        .url-list-label:before {
+          content: '🖥️';
+          top: 1px;
+        }
+      }
+    </style>
   </head>
   <body class="page-url-list">
     <div class="url-list-content">
@@ -49,68 +146,3 @@ await Promise.all(allPages.map(generateUrl));
     </div>
   </body>
 </html>
-
-<style lang="stylus">
-  .page-url-list
-    background-color #F5F5F5
-    color #333333
-    font-family 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif
-    padding vw-sm(50)
-    +media('md')
-      padding 50px
-
-  .url-list-content
-    margin-inline auto
-    +media('md')
-      max-width 960px
-
-  .url-list-heading
-    font-vw-set(30, 30)
-    font-weight bold
-    margin-bottom vw-sm(25)
-    text-align center
-    +media('md')
-      font-rem-set(20)
-      margin-bottom 20px
-
-  .url-list
-    border 1px solid #D7D7D7
-    border-radius 10px
-    overflow hidden
-
-  .url-list-item
-    font-vw-set(30)
-    background #FAFAFB
-    word-break break-all
-    &:not(:first-child)
-      border-top 1px solid #D7D7D7
-    &:nth-child(odd)
-      background #ffffff
-    +media('md')
-      font-rem-set(16, 16)
-
-  .url-list-link
-    color #333333
-    display block
-    height 100%
-    padding vw-sm(20)
-    +media('md')
-      padding 15px
-
-  .url-list-label
-    display block
-    padding-left 1.4em
-    position relative
-    +media('md')
-      padding-left 2em
-
-  .url-list-label
-    &::before
-      absolute top vw-sm(3) left
-      content '📱'
-      display block
-    +media('md')
-      &::before
-        content '🖥️'
-        top 1px
-</style>

@@ -27,7 +27,7 @@ const { optimizedImage, optimizedImageMd, optimizedImageRetina } = await optimiz
 {isSvg ? (
   <picture>
     <source
-      media={`(min-width: ${config.breakPoint.md}px)`}
+      media={`(min-width: ${config.breakPoints.md}px)`}
       srcset={`${optimizedImageMd.src}`}
       width={optimizedImageMd.width}
       height={optimizedImageMd.height}
@@ -45,7 +45,7 @@ const { optimizedImage, optimizedImageMd, optimizedImageRetina } = await optimiz
 ) : (
   <picture>
     <source
-      media={`(min-width: ${config.breakPoint.md}px)`}
+      media={`(min-width: ${config.breakPoints.md}px)`}
       srcset={`${optimizedImageMd.src}${retina ? `, ${optimizedImageRetina.src} 2x` : ''}`}
       width={optimizedImageMd.attributes.width}
       height={optimizedImageMd.attributes.height}

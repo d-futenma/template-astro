@@ -1,7 +1,7 @@
 media($device)
-  unless ($breakpoint[$device])
+  unless ($breakpoints[$device])
     error($device + 'is not defined.')
-  @media $breakpoint[$device]
+  @media $breakpoints[$device]
     {block}
 
 relative()
@@ -21,10 +21,10 @@ size($width, $height = $width)
   width _add-pixel($width)
 
 vw-sm($val)
-  _calc-vw($val, $viewport-sm)
+  _calc-vw($val, $design-size.sp)
 
 vw-md($val)
-  _calc-vw($val, $viewport-md)
+  _calc-vw($val, $design-size.pc)
 
 calc-line-height($font-size = null, $line-height = $font-size)
   line-height: ($line-height / $font-size)
@@ -42,7 +42,7 @@ font-rem-set($font-size, $line-height = null, $letter-spacing = null)
 
 font-vw-set($font-size, $line-height = null, $letter-spacing = null)
   _apply-font-properties($font-size, $line-height, $letter-spacing)
-  font-size ($font-size / $viewport-sm * 100) vw
+  font-size ($font-size / $design-size.sp * 100) vw
 
 text-replace()
   overflow hidden

@@ -9,20 +9,15 @@ body
   font-family $body-font-family
   font-feature-settings 'palt'
   text-rendering auto
-  +media('sm')
-    -webkit-tap-highlight-color rgba(0, 0, 0, 0)
-    -webkit-text-size-adjust 100%
   +media('md')
     font-rem-set(16)
 
 a
   color $link-color
-  text-decoration none
 
 img
   max-width 100%
   size 100% auto
-  vertical-align bottom
   +media('md')
     width auto
 
