@@ -1,39 +1,38 @@
 ---
-import config from '../config'
+import { siteTitle, siteDescription, siteOgSiteName, siteOgUrl, siteOgImage, siteOgType, pathImg } from '../consts'
 import SvgSprites from '../components/ui/SvgSprites.astro'
 import Header from '../layouts/Header.astro'
 import Footer from '../layouts/Footer.astro'
 import '../styles/style.styl'
 
 const {
-  title = config.meta.title[0],
-  description = config.meta.description[0],
-  ogTitle = config.meta.title[1] ?? config.meta.title[0],
-  ogDescription = config.meta.description[1] ?? config.meta.description[0],
-  ogSiteName = config.meta.ogSiteName,
-  ogUrl = config.siteUrl,
-  ogImage = config.meta.ogImage,
-  ogType = config.meta.ogType,
+  title         = siteTitle[0],
+  description   = siteDescription[0],
+  ogTitle       = siteTitle[1] ?? siteTitle[0],
+  ogDescription = siteDescription[1] ?? siteDescription[0],
+  ogSiteName    = siteOgSiteName,
+  ogUrl         = siteOgUrl,
+  ogImage       = siteOgImage,
+  ogType        = siteOgType,
   bodyClass
 } = Astro.props
 ---
-
 <!doctype html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="format-detection" content="telephone=no" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content={ogTitle} />
-    <meta property="og:description" content={ogDescription} />
-    <meta property="og:site_name" content={ogSiteName} />
-    <meta property="og:url" content={ogUrl} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content={ogType} />
-    <link rel="shortcut icon" type="image/ico" href={`${config.path.image}favicon/favicon.svg`} />
+    <meta name="description" content={description}>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content={ogTitle}>
+    <meta property="og:description" content={ogDescription}>
+    <meta property="og:site_name" content={ogSiteName}>
+    <meta property="og:url" content={ogUrl}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:type" content={ogType}>
+    <link rel="shortcut icon" type="image/ico" href={`${pathImg}favicon/favicon.svg`} />
     <script src="../scripts/main.js"></script>
   </head>
   <body class={bodyClass}>

@@ -1,0 +1,32 @@
+---
+import imageSize from 'image-size';
+import config from '../../site-config';
+import extractFileDetails from '../../utilities/extractFileDetails';
+import normalizeSlashes from '../../utilities/normalizeSlashes';
+
+interface PictureProps {
+  src: string;
+  alt: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'sync' | 'async' | 'auto';
+  retina?: boolean;
+  [key: string]: any;
+}
+
+const { src,  alt = '', loading = 'lazy', decoding = 'async', retina = true, ...otherProps } = Astro.props as PictureProps;
+const { md } = config.breakPoints;
+const { smDir, mdDir, retinaSuffix } = config.images;
+const { dir, baseName, ext } = extractFileDetails(src);
+
+const imagePath = (sizePrefix: string, isRetina: boolean = false): string => {
+  const imageSuffix = isRetina ? retinaSuffix : ''
+  return normalizeSlashes(`${dir}${sizePrefix}${baseName}${imageSuffix}.${ext}`);
+}
+
+const mdImageSizes = imageSize(`public${imagePath(mdDir)}`)
+const smImageSizes = imageSize(`public${imagePath(smDir)}`)
+---
+<picture>
+  <source media={`(min-width: ${md}px)`} srcset={`${imagePath(mdDir)}${retina ? `, ${imagePath(mdDir, true)} 2x` : ''}`} width={mdImageSizes.width} height={mdImageSizes.height}>
+  <img src={imagePath(smDir)} alt={alt} width={smImageSizes.width} height={smImageSizes.height} loading={loading} decoding={decoding} {...otherProps}>
+</picture>

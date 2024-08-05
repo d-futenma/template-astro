@@ -1,10 +1,10 @@
 ---
-import config from '../../config'
+import config from '../../site-config';
 import extractFileDetails from '../../utilities/extractFileDetails';
 import normalizeSlashes from '../../utilities/normalizeSlashes';
 import optimizeImage from '../../utilities/optimizeImage';
 
-const { src, alt = '', loading = config.image.loading, decoding = config.image.decoding, format = config.image.format, ...otherProps } = Astro.props;
+const { src, alt = '', loading = config.images.loading, decoding = config.images.decoding, format = config.images.format, ...otherProps } = Astro.props;
 const { ext } = extractFileDetails(src);
 const isSvg = ext === 'svg';
 const importedImages = import.meta.glob('/src/assets/img/**/*');

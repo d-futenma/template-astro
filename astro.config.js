@@ -1,27 +1,30 @@
 import { defineConfig } from 'astro/config'
 import path from 'path'
 import url from 'url'
-import config from './src/config'
-import deleteDirectory from './src/integrations/deleteDirectory.js';
+import config from './src/site-config'
+import { siteUrl } from './src/consts'
+import deleteDirectory from './integrations/deleteDirectory'
+
+const { outDir, deletes } = config
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.siteUrl,
+  site: siteUrl,
   base: '/',
   server: {
     port: 3000,
     host: true,
   },
-  outDir: config.outDir,
+  outDir: outDir.root,
   compressHTML: false,
   build: {
     assets: 'assets',
     inlineStylesheets: 'never',
   },
   devToolbar: {
-    enabled: false
+    enabled: false,
   },
   vite: {
     resolve: {
@@ -32,9 +35,7 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         stylus: {
-          imports: [
-            path.resolve(dirName, './src/styles/global'),
-          ],
+          imports: [path.resolve(dirName, './src/styles/global')],
         },
       },
     },
@@ -45,16 +46,16 @@ export default defineConfig({
           assetFileNames: (assetInfo) => {
             const extType = assetInfo.name.split('.').at(-1)
             if (/png|jpg|jpeg|gif|svg|webp/.test(extType)) {
-              return `assets/img/[name][extname]`
+              return outDir.img
             }
             if (/css|scss|styl/i.test(extType)) {
-              return `assets/css/style[extname]`
+              return outDir.css
             }
           },
-          entryFileNames: `assets/js/bundle.js`,
+          entryFileNames: outDir.js,
         },
       },
     },
   },
-  integrations: [deleteDirectory(config.outDir, config.deletes)],
+  integrations: [deleteDirectory(outDir.root, deletes)],
 })

@@ -1,7 +1,14 @@
 ---
-const { text, className = 'char', Tag = 'span', ...otherProps } = Astro.props
+interface SplitText {
+  text: string;
+  className?: string;
+  Tag?: string;
+  [key: string]: any;
+}
 
-const splitText = (text) => {
+const { text, className = 'char', Tag = 'span', ...otherProps } = Astro.props as SplitText;
+
+const splitCharacters = (text: string) => {
   const characters = []
   let charIndex = 1
 
@@ -16,13 +23,12 @@ const splitText = (text) => {
   return characters
 }
 
-const characters = splitText(text)
+const characters = splitCharacters(text)
 ---
-
 {
   characters.map((item) =>
     item.type === 'char' ? (
-      <Tag class={`${className} ${className}-${item.index}`} set:html={item.value} {...otherProps}></Tag>
+      <Tag class:list={[`${className} ${className}-${item.index}`]} set:html={item.value} {...otherProps}></Tag>
     ) : (
       <br />
     )

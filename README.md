@@ -6,6 +6,7 @@
 - [Astro](https://astro.build/)
 - [Stylus](https://stylus-lang.com/)
 - [ESLint](https://eslint.org/)
+- [Stylelint](https://stylelint.io/)
 - [Markuplint](https://markuplint.dev/)
 - [Prettier](https://prettier.io/)
 
@@ -34,18 +35,17 @@ npm i
 .
 ├─ public/             # 静的ファイルを格納するディレクトリ
 ├─ src/                # サイト本体のソースコード
-│  ├─ assets/          # ローカルアセット
-│  │  └─ img/          # 最適化したい画像を格納するディレクトリ
 │  ├─ components/      # コンポーネントを格納するディレクトリ
 │  │  ├─ page/         # ページ固有のコンポーネントを格納するディレクトリ
 │  │  └─ ui/           # 再利用可能なUIコンポーネントを格納するディレクトリ
-│  ├─ integrations/    # Astroインテグレーションを格納するディレクトリ
+│  ├─ images/          # 最適化したい画像を格納するディレクトリ
 │  ├─ layouts/         # ページのレイアウトを格納するディレクトリ
 │  ├─ pages/           # サイトのページを格納するディレクトリ
 │  ├─ scripts/         # JavaScriptファイルを格納するディレクトリ
 │  ├─ styles/          # CSSを格納するディレクトリ
 │  ├─ utilities/       # 汎用的なユーティリティ関数を格納するディレクトリ
-│  └─ config.js        # サイトの設定を定義するファイル
+│  ├─ consts.js        # 定数を定義するファイル
+│  └─ site-config.js   # サイトの設定を定義するファイル
 ├─ astro.config.mjs    # Astroの設定ファイル
 ├─ eslint.config.mjs   # ESLintの設定ファイル
 ├─ package.json        # 依存パッケージを管理するためのファイル
