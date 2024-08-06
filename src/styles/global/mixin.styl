@@ -32,15 +32,15 @@ calc-line-height($font-size = null, $line-height = $font-size)
 calc-letter-spacing($letter-spacing)
   letter-spacing ($letter-spacing / 1000) em
 
-font-pixel-set($font-size, $line-height = null, $letter-spacing = null)
+font-pixel($font-size, $line-height = null, $letter-spacing = null)
   _apply-font-properties($font-size, $line-height, $letter-spacing)
   font-size $font-size px
 
-font-rem-set($font-size, $line-height = null, $letter-spacing = null)
+font-rem($font-size, $line-height = null, $letter-spacing = null)
   _apply-font-properties($font-size, $line-height, $letter-spacing)
   font-size ($font-size / 10) rem
 
-font-vw-set($font-size, $line-height = null, $letter-spacing = null)
+font-vw($font-size, $line-height = null, $letter-spacing = null)
   _apply-font-properties($font-size, $line-height, $letter-spacing)
   font-size ($font-size / $design-size.sp * 100) vw
 
@@ -100,7 +100,7 @@ bg-img-multiple($imagesHash, $sizesHash = false)
 // ----------
 // set-aspect-ratio(1920, 1080) -> aspect-ratio 16/9
 // ----------
-aspect-ratio-set($width, $height)
+calc-aspect-ratio($width, $height)
   $divisor = _greatestCommonDivisor($width, $height)
   $widthRatio = ($width / $divisor)
   $heightRatio = ($height / $divisor)
