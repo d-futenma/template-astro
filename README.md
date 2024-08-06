@@ -1,53 +1,61 @@
-# Frontend Template
+# Template Astro 🚀
+静的な Web サイトを制作するためのスターターテンプレートです。
 
-静的サイト構築のためのフロントエンド開発環境です。  
-以下のツールを採用しています。
+## 使用ツール
+- [Astro](https://astro.build/) - フレームワーク
+- [Stylus](https://stylus-lang.com/) - CSS プリプロセッサー
+- [Markuplint](https://markuplint.dev/) - HTML 静的コード解析用ツール
+- [Stylelint](https://stylelint.io/) - CSS 静的コード解析用ツール
+- [ESLint](https://eslint.org/) - JavaScript 静的コード解析用ツール
+- [Prettier](https://prettier.io/) - コードフォーマッター
 
-- [Astro](https://astro.build/)
-- [Stylus](https://stylus-lang.com/)
-- [ESLint](https://eslint.org/)
-- [Stylelint](https://stylelint.io/)
-- [Markuplint](https://markuplint.dev/)
-- [Prettier](https://prettier.io/)
+## 必須環境
+[Node.js](https://nodejs.jp/) >= `18.17.0`  
 
-## 導入
-
-依存パッケージのインストール:
-
+## 環境構築
 ```
-npm i
+npm install
+```
+
+## 開発サーバーの起動
+```
+npm run dev
+```
+
+## 本番用ビルド
+```
+npm run build
 ```
 
 ## 開発用コマンド
 
-| コマンド               | アクション                               |
-| :--------------------- | :--------------------------------------- |
-| `npm run dev`          | 開発サーバーの起動。                     |
-| `npm run build`        | 本番用ビルド。`htdocs/` に出力           |
-| `npm run build:format` | 本番用ビルド後にソースコードを自動整形。 |
-| `npm run preview`      | 本番用ビルド後のプレビュー。             |
-| `npm run lint`         | ソースコードの検証。                     |
-| `npm run format`       | ソースコードを自動整形。                 |
+| コマンド               | アクション                            |
+| :--------------------- | :------------------------------------ |
+| `npm run dev`          | 開発サーバーの起動。                  |
+| `npm run build`        | 本番用ビルド                          |
+| `npm run preview`      | 本番用ビルド後のプレビュー。          |
+| `npm run lint:html`    | src/ 内の HTML 構文をチェック。       |
+| `npm run lint:js`      | src/ 内の JavaScript 構文をチェック。 |
+| `npm run format`       | ソースコードを自動整形。              |
 
 ## ディレクトリ構成
-
+主に開発で使用するものを記載。
 ```
 .
-├─ public/             # 静的ファイルを格納するディレクトリ
-├─ src/                # サイト本体のソースコード
-│  ├─ components/      # コンポーネントを格納するディレクトリ
-│  │  ├─ page/         # ページ固有のコンポーネントを格納するディレクトリ
-│  │  └─ ui/           # 再利用可能なUIコンポーネントを格納するディレクトリ
-│  ├─ images/          # 最適化したい画像を格納するディレクトリ
-│  ├─ layouts/         # ページのレイアウトを格納するディレクトリ
-│  ├─ pages/           # サイトのページを格納するディレクトリ
-│  ├─ scripts/         # JavaScriptファイルを格納するディレクトリ
-│  ├─ styles/          # CSSを格納するディレクトリ
-│  ├─ utilities/       # 汎用的なユーティリティ関数を格納するディレクトリ
-│  ├─ consts.js        # 定数を定義するファイル
-│  └─ site-config.js   # サイトの設定を定義するファイル
-├─ astro.config.mjs    # Astroの設定ファイル
-├─ eslint.config.mjs   # ESLintの設定ファイル
-├─ package.json        # 依存パッケージを管理するためのファイル
-└─ tsconfig.json       # TypeScriptの設定ファイル
+├─ public/           # 静的ファイルを格納するディレクトリ
+├─ src/              # サイト本体のソースコード
+│  ├─ components/    # コンポーネントを格納するディレクトリ
+│  │  ├─ page/       # ページ固有のコンポーネントを格納するディレクトリ
+│  │  └─ ui/         # 再利用可能なUIコンポーネントを格納するディレクトリ
+│  ├─ images/        # 最適化したい画像を格納するディレクトリ
+│  ├─ layouts/       # ページのレイアウトを格納するディレクトリ
+│  ├─ pages/         # サイトのページを格納するディレクトリ
+│  ├─ scripts/       # JavaScriptファイルを格納するディレクトリ
+│  ├─ styles/        # CSSを格納するディレクトリ
+│  ├─ utilities/     # 汎用的なユーティリティ関数を格納するディレクトリ
+│  ├─ consts.js      # 汎用的な定数を定義するファイル
+│  └─ site-config.js # サイトの設定を定義するファイル
+├─ astro.config.js   # Astroの設定ファイル
+├─ package.json      # 依存パッケージを管理するためのファイル
+└─ tsconfig.json     # TypeScriptの設定ファイル
 ```
