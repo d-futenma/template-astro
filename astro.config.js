@@ -18,7 +18,7 @@ export default defineConfig({
     host: true,
   },
   outDir: outDir.root,
-  compressHTML: false,
+  compressHTML: true,
   build: {
     assets: 'assets',
     inlineStylesheets: 'never',

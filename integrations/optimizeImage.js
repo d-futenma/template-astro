@@ -73,7 +73,7 @@ const optimizeImage = async (srcPath, destPath, isFromInputDir) => {
  */
 const watchImages = async () => {
   const srcWatcher = chokidar.watch(inputDir, {
-    ignored: /(^|[\/\\])\../,
+    ignored: /(^|[/\\])\../,
     persistent: true,
   })
 
@@ -100,7 +100,7 @@ const watchImages = async () => {
   })
 
   const publicWatcher = chokidar.watch(outputDir, {
-    ignored: /(^|[\/\\])\../,
+    ignored: /(^|[/\\])\../,
     persistent: true,
   })
 
