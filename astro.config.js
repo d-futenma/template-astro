@@ -46,7 +46,7 @@ export default defineConfig({
           assetFileNames: (assetInfo) => {
             const extType = assetInfo.name.split('.').at(-1)
             if (/png|jpg|jpeg|gif|svg|webp/.test(extType)) {
-              return outDir.img
+              return `assets/img/[name][extname]`
             }
             if (/css|scss|styl/i.test(extType)) {
               return outDir.css

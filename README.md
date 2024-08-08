@@ -9,38 +9,25 @@
 - [ESLint](https://eslint.org/) - JavaScript 静的コード解析用ツール
 - [Prettier](https://prettier.io/) - コードフォーマッター
 
-## ⚙️ 環境構築
-### 必須環境
+## 🧑‍🚀 必須環境
 [Node.js](https://nodejs.jp/) >= `18.17.0`  
 
-### パッケージのインストール
+## ⚙️ 環境構築
 ```
 npm install
 ```
 
 ## 🤖 開発用コマンド
 
-### 開発サーバーの起動
-```
-npm run dev
-```
-
-### 本番用ビルド
-```
-npm run build
-```
-
-
-
-## 開発用コマンド
-
 | コマンド               | アクション                            |
 | :--------------------- | :------------------------------------ |
 | `npm run dev`          | 開発サーバーの起動                    |
 | `npm run build`        | 本番用ビルド                          |
 | `npm run preview`      | 本番用ビルド後のプレビュー            |
-| `npm run lint:html`    | src/ 内の HTML 構文をチェック         |
-| `npm run lint:js`      | src/ 内の JavaScript 構文をチェック   |
+| `npm run lint`         | ソースコードの静的検証                |
+| `npm run lint:html`    | HTML構文をチェック                    |
+| `npm run lint:css`     | CSS構文をチェック                     |
+| `npm run lint:js`      | JavaScript構文をチェック              |
 | `npm run format`       | ソースコードを自動整形                |
 
 ## 📁 ディレクトリ構成
@@ -50,8 +37,6 @@ npm run build
 ├─ public/           # 静的ファイルを格納するディレクトリ
 ├─ src/              # サイト本体のソースコード
 │  ├─ components/    # コンポーネントを格納するディレクトリ
-│  │  ├─ page/       # ページ固有のコンポーネントを格納するディレクトリ
-│  │  └─ ui/         # 再利用可能なUIコンポーネントを格納するディレクトリ
 │  ├─ images/        # 最適化（画像圧縮とWebP変換）したい画像を格納するディレクトリ
 │  ├─ layouts/       # ページのレイアウトを格納するディレクトリ
 │  ├─ pages/         # サイトのページを格納するディレクトリ
@@ -63,4 +48,4 @@ npm run build
 ├─ astro.config.js   # Astroの設定ファイル
 └─ package.json      # 依存パッケージを管理するためのファイル
 ```
-主に開発で使用するものを記載。
+主に開発で使用するものを記載

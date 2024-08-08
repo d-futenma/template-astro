@@ -25,7 +25,6 @@ const config = {
     root: 'htdocs',
     css : 'assets/css/style[extname]',
     js  : 'assets/js/bundle.js',
-    img : 'assets/img/[name][extname]',
   },
   deletes: ['url-list']
 }
