@@ -1,5 +1,5 @@
 # 🚀 Astro Template
-静的な Web サイトを制作するためのスターターテンプレートです。
+Astro を使用して静的な Web サイトを制作するためのスターターテンプレートです。
 
 ## 🛠️ 使用ツール
 - [Astro](https://astro.build/) - フレームワーク
@@ -12,7 +12,7 @@
 ## 🧑‍🚀 必須環境
 [Node.js](https://nodejs.jp/) >= `18.17.0`  
 
-## ⚙️ 環境構築
+## ⚙️ セットアップ
 ```
 npm install
 ```
@@ -49,3 +49,21 @@ npm install
 └─ package.json      # 依存パッケージを管理するためのファイル
 ```
 主に開発で使用するものを記載
+
+## 🌏 設定
+| プロパティ名                      | 説明                                            |
+| --------------------------------- | ----------------------------------------------- |
+| config.breakPoints.sm             | ブレイクポイント smサイズ設定                   |
+| config.breakPoints.md             | ブレイクポイント mdサイズ設定                   |
+| config.retinaSuffix               | Pictureコンポーネント Retina対応用Suffix設定    |
+| config.optimize.inputDir          | 画像最適化 出力前のディレクトリ設定             |
+| config.optimize.outputDir         | 画像最適化 出力ディレクトリ設定                 |
+| config.optimize.format            | 画像最適化 変換する拡張子の設定                 |
+| config.optimize.allowedExtensions | 画像最適化 許可される画像拡張子                 |
+| config.optimize.options.jpg       | 画像最適化 jpg形式の設定                        |
+| config.optimize.options.png       | 画像最適化 png形式の設定                        |
+| config.optimize.options.webp      | 画像最適化 webp形式の設定                       |
+| config.outDir.root                | ビルド出力 ルート設定                           |
+| config.outDir.css                 | ビルド出力 CSSファイルのディレクトリ設定        |
+| config.outDir.js                  | ビルド出力 JavaScriptファイルのディレクトリ設定 |
+| config.deletes                    | ビルド出力 削除ファイルの設定                   |
