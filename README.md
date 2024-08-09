@@ -12,7 +12,7 @@ Astro を使用して静的な Web サイトを制作するためのスタータ
 ## 🧑‍🚀 必須環境
 [Node.js](https://nodejs.jp/) >= `18.17.0`  
 
-## ⚙️ セットアップ
+## 📟 セットアップ
 ```
 npm install
 ```
@@ -21,7 +21,7 @@ npm install
 
 | コマンド               | アクション                            |
 | :--------------------- | :------------------------------------ |
-| `npm run dev`          | 開発サーバーの起動                    |
+| `npm run dev`          | 開発サーバの起動                      |
 | `npm run build`        | 本番用ビルド                          |
 | `npm run preview`      | 本番用ビルド後のプレビュー            |
 | `npm run lint`         | ソースコードの静的検証                |
@@ -50,7 +50,7 @@ npm install
 ```
 ※主に開発で使用するものを記載
 
-## 🌏 設定
+## ⚙️ 設定
 | プロパティ名                      | 説明                                            |
 | --------------------------------- | ----------------------------------------------- |
 | config.breakPoints.sm             | ブレイクポイント smサイズ設定                   |
@@ -67,3 +67,7 @@ npm install
 | config.outDir.css                 | ビルド出力 CSSファイルのディレクトリ設定        |
 | config.outDir.js                  | ビルド出力 JavaScriptファイルのディレクトリ設定 |
 | config.deletes                    | ビルド出力 削除ファイルの設定                   |
+
+## 👀 公式ドキュメント
+- [Astro](https://docs.astro.build/ja/getting-started/)
+- [Stylus](https://stylus-lang.com/docs/)
