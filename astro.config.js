@@ -5,9 +5,8 @@ import config from './src/site-config'
 import { siteUrl } from './src/consts'
 import deleteDirectory from './integrations/deleteDirectory'
 
-const { outDir, deletes } = config
-
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
+const { root, css, js, minify, deletes } = config.build
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,8 +16,8 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-  outDir: outDir.root,
-  compressHTML: true,
+  outDir: root,
+  compressHTML: minify,
   build: {
     assets: 'assets',
     inlineStylesheets: 'never',
@@ -40,7 +39,7 @@ export default defineConfig({
       },
     },
     build: {
-      minify: true,
+      minify: minify,
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
@@ -49,13 +48,13 @@ export default defineConfig({
               return `assets/img/[name][extname]`
             }
             if (/css|scss|styl/i.test(extType)) {
-              return outDir.css
+              return css
             }
           },
-          entryFileNames: outDir.js,
+          entryFileNames: js,
         },
       },
     },
   },
-  integrations: [deleteDirectory(outDir.root, deletes)],
+  integrations: [deleteDirectory(root, deletes)],
 })

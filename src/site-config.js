@@ -1,4 +1,11 @@
 const config = {
+  build: {
+    root   : 'htdocs',
+    css    : 'assets/css/style[extname]',
+    js     : 'assets/js/bundle.js',
+    minify : true,
+    deletes: ['url-list']
+  },
   breakPoints: {
     sm: 767,
     md: 768,
@@ -21,12 +28,6 @@ const config = {
       }
     }
   },
-  outDir: {
-    root: 'htdocs',
-    css : 'assets/css/style[extname]',
-    js  : 'assets/js/bundle.js',
-  },
-  deletes: ['url-list']
 }
 
 export default config

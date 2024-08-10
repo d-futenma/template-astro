@@ -54,6 +54,11 @@ npm install
 ## ⚙️ 設定
 | プロパティ名                      | 説明                                            |
 | --------------------------------- | ----------------------------------------------- |
+| config.build.root                 | ビルド出力 ルート設定                           |
+| config.build.css                  | ビルド出力 CSSファイルのディレクトリ設定        |
+| config.build.js                   | ビルド出力 JavaScriptファイルのディレクトリ設定 |
+| config.build.minify               | ビルド出力 Minify設定                           |
+| config.build.deletes              | ビルド出力 削除ファイルの設定                   |
 | config.breakPoints.sm             | ブレイクポイント smサイズ設定                   |
 | config.breakPoints.md             | ブレイクポイント mdサイズ設定                   |
 | config.retinaSuffix               | Pictureコンポーネント Retina対応用Suffix設定    |
@@ -64,10 +69,6 @@ npm install
 | config.optimize.options.jpg       | 画像最適化 jpg形式の設定                        |
 | config.optimize.options.png       | 画像最適化 png形式の設定                        |
 | config.optimize.options.webp      | 画像最適化 webp形式の設定                       |
-| config.outDir.root                | ビルド出力 ルート設定                           |
-| config.outDir.css                 | ビルド出力 CSSファイルのディレクトリ設定        |
-| config.outDir.js                  | ビルド出力 JavaScriptファイルのディレクトリ設定 |
-| config.deletes                    | ビルド出力 削除ファイルの設定                   |
 
 ## 👀 公式ドキュメント
 - [Astro](https://docs.astro.build/ja/getting-started/)
