@@ -27,19 +27,19 @@ _percentage()
     return percentage(arguments[0] / arguments[1])
 
 // vw計算関数
-_calc-vw($val, $viewport)
+_vw($val, $viewport)
   1vw * _percentage($val, $viewport)
 
 // vh計算関数
-_calc-vh($val, $viewport)
+_vh($val, $viewport)
   1vh * _percentage($val, $viewport)
 
 // line-heightとletter-spacingを追加する関数
 _apply-font-properties($font-size, $line-height = null, $letter-spacing = null)
-  if $line-height
-    calc-line-height($font-size, $line-height)
   if $letter-spacing
     calc-letter-spacing($letter-spacing)
+  if $line-height
+    calc-line-height($font-size, $line-height)
 
 // 幅と高さの最大公約数を計算する関数
 _greatestCommonDivisor($width, $height)

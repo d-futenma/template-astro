@@ -21,10 +21,10 @@ size($width, $height = $width)
   width _add-pixel($width)
 
 vw-sm($val)
-  _calc-vw($val, $design-size.sp)
+  _vw($val, $viewport-sm)
 
 vw-md($val)
-  _calc-vw($val, $design-size.pc)
+  _vw($val, $viewport-md)
 
 calc-line-height($font-size = null, $line-height = $font-size)
   line-height: ($line-height / $font-size)
@@ -33,16 +33,16 @@ calc-letter-spacing($letter-spacing)
   letter-spacing ($letter-spacing / 1000) em
 
 font-pixel($font-size, $line-height = null, $letter-spacing = null)
-  _apply-font-properties($font-size, $line-height, $letter-spacing)
   font-size $font-size px
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
 
 font-rem($font-size, $line-height = null, $letter-spacing = null)
-  _apply-font-properties($font-size, $line-height, $letter-spacing)
   font-size ($font-size / 10) rem
+  _apply-font-properties($font-size, $line-height, $letter-spacing)
 
 font-vw($font-size, $line-height = null, $letter-spacing = null)
+  font-size ($font-size / $viewport-sm * 100) vw
   _apply-font-properties($font-size, $line-height, $letter-spacing)
-  font-size ($font-size / $design-size.sp * 100) vw
 
 text-replace()
   overflow hidden

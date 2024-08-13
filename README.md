@@ -1,5 +1,5 @@
 # 🚀 Astro Template
-Astro を使用して静的な Web サイトを制作するためのスターターテンプレートです。
+[Astro](https://astro.build/) を使用して静的な Web サイトを制作するためのスターターテンプレートです。
 
 ## 🛠️ 使用ツール
 - [Astro](https://astro.build/) - フレームワーク
