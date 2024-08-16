@@ -1,10 +1,11 @@
 const config = {
   build: {
-    root   : 'htdocs',
-    css    : 'assets/css/style[extname]',
-    js     : 'assets/js/bundle.js',
-    minify : true,
-    deletes: ['url-list']
+    root        : 'htdocs',
+    css         : 'assets/css/style[extname]',
+    js          : 'assets/js/bundle.js',
+    relativePath: false,
+    minify      : true,
+    deletes     : ['url-list'],
   },
   breakPoints: {
     sm: 767,

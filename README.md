@@ -10,7 +10,7 @@
 - [Prettier](https://prettier.io/) - コードフォーマッター
 
 ## 🧑‍🚀 必須環境
-[Node.js](https://nodejs.jp/) >= `18.17.0`  
+[Node.js](https://nodejs.jp/) >= `v18.17.0`  
 
 ## 📟 セットアップ
 ```
@@ -33,7 +33,6 @@ npm install
 ## 📁 ディレクトリ構成
 
 ```
-.
 ├─ public/           # 静的ファイルを格納するディレクトリ
 ├─ src/              # サイト本体のソースコード
 │  ├─ components/    # コンポーネントを格納するディレクトリ
@@ -57,6 +56,7 @@ npm install
 | config.build.root                 | ビルド出力 ルート設定                           |
 | config.build.css                  | ビルド出力 CSSファイルのディレクトリ設定        |
 | config.build.js                   | ビルド出力 JavaScriptファイルのディレクトリ設定 |
+| config.build.relativePath         | ビルド出力 相対パスの設定                       |
 | config.build.minify               | ビルド出力 Minify設定                           |
 | config.build.deletes              | ビルド出力 削除ファイルの設定                   |
 | config.breakPoints.sm             | ブレイクポイント smサイズ設定                   |

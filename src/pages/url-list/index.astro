@@ -1,32 +1,50 @@
 ---
-const allPages = await Astro.glob('/src/pages/**/*.astro'); 
-let pathList = [];
-
-const changeExtension = (filename) => filename.replace(/\.astro$/, '.html')
-
-const extractPath = (fullPath) => {
-  let path = fullPath.split('/src/pages/')[1];
-  return changeExtension(path);
+interface StaticPathParams {
+  params: { [key: string]: string };
 }
 
-const generateUrl = async (page) => {
-  let url = page.url ? page.url : '/';
+interface Page {
+  url?: string;
+  file: string;
+  getStaticPaths?: () => Promise<StaticPathParams[]>;
+}
+
+const allPages = await Astro.glob('/src/pages/**/*.astro');
+let pathList = [];
+
+const changeExtension = (filename: string): string => filename.replace(/\.astro$/, '.html');
+
+const extractPath = (fullPath: string): string => {
+  const path = fullPath.split('/src/pages/')[1];
+  return changeExtension(path);
+};
+
+const generateUrl = async (page: Page) => {
+  let baseUrl = page.url || '/';
 
   if (page.getStaticPaths) {
     const paths = await page.getStaticPaths();
 
-    paths.forEach(path => {
+    paths.forEach((path: StaticPathParams) => {
       const dynamicSegmentMatch = page.file.match(/\[\.\.\.(.+?)\]\.astro$/);
+      
       if (dynamicSegmentMatch) {
         const dynamicSegment = dynamicSegmentMatch[1];
-        url = `/${path.params[dynamicSegment]}`;
+        const dynamicPath = `${path.params[dynamicSegment]}/`;
+        const dynamicLabel = `${dynamicPath}index.html`;
+        pathList.push({ ...page, url: `/${dynamicPath}`, label: dynamicLabel });
+      } else {
+        baseUrl += '/';
+        pathList.push({ ...page, url: `/${baseUrl}`, label: `/${baseUrl}index.html` });
       }
-      pathList.push({ ...page, url, path: `${url}.html` });
     });
   } else {
-    pathList.push({ ...page, url, path: extractPath(page.file) });
+    const staticPath = extractPath(page.file);
+    const staticUrl = staticPath === 'index.html' ? '/' : `${baseUrl}/`;
+    const staticLabel = staticPath
+    pathList.push({ ...page, url: staticUrl, label: staticLabel });
   }
-}
+};
 
 await Promise.all(allPages.map(generateUrl));
 ---
@@ -40,13 +58,7 @@ await Promise.all(allPages.map(generateUrl));
       .page-url-list {
         background-color: #f5f5f5;
         color: #333;
-        font-family:
-          Helvetica Neue,
-          Arial,
-          Hiragino Kaku Gothic ProN,
-          Hiragino Sans,
-          Meiryo,
-          sans-serif;
+        font-family: Helvetica Neue, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Meiryo, sans-serif;
         font-weight: 400;
         padding: 6.666666666666667vw;
       }
@@ -139,7 +151,7 @@ await Promise.all(allPages.map(generateUrl));
       <h1 class="url-list-heading">URL LIST</h1>
       <ul class="url-list">
         {pathList.map((item) => (
-          <li class="url-list-item"><a class="url-list-link" href={item.url}><span class="url-list-label">{item.path}</span></a></li>
+          <li class="url-list-item"><a class="url-list-link" href={item.url}><span class="url-list-label">{item.label}</span></a></li>
         ))}
       </ul>
     </div>
