@@ -40,6 +40,7 @@ export default defineConfig({
     },
     build: {
       minify: minify,
+      assetsInlineLimit: 0,
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
