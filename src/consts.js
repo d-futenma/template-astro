@@ -3,7 +3,7 @@ import normalizeSlashes from './utilities/normalizeSlashes';
 // URL
 export const siteUrl = 'https://example.com/'
 
-// Head
+// SEO, OGP
 export const siteTitle       = ['タイトル', 'ogタグ用タイトル'];
 export const siteDescription = ['ディスクリプション', 'ogディスクリプション'];
 export const siteOgSiteName  = 'サイト名'

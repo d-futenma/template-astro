@@ -1,4 +1,7 @@
 ---
 const { href, title = '', ...otherProps } = Astro.props;
 ---
-<svg {...otherProps}>{title && <title>{title}</title>}<use href={`#${href}`}></use></svg>
+<svg role={title ? 'img' : null} aria-label={title? title : null} {...otherProps}>
+  {title && <title>{title}</title>}
+  <use href={`#${href}`}></use>
+</svg>

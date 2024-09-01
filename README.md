@@ -45,8 +45,8 @@ npm install
 │  ├─ consts.js      # 汎用的な定数を定義するファイル
 │  └─ site-config.js # サイトの設定を定義するファイル
 ├─ astro.config.js   # Astroの設定ファイル
-├─ package.json        # 依存パッケージを管理するためのファイル
-└─ tsconfig.json       # TypeScriptの設定ファイル
+├─ package.json      # 依存パッケージを管理するためのファイル
+└─ tsconfig.json     # TypeScriptの設定ファイル
 ```
 ※主に開発で使用するものを記載
 
