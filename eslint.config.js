@@ -1,5 +1,4 @@
 import js from '@eslint/js'
-import globals from "globals";
 import astro from 'eslint-plugin-astro'
 
 export default [
@@ -11,9 +10,9 @@ export default [
       parserOptions: {
         parser: '@typescript-eslint/parser',
       },
-      globals: {
-        ...globals.browser,
-      },
+    },
+    rules: {
+      'no-undef': 'off',
     },
   },
   {
