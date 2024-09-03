@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "npm-run-all -p dev:*",
     "dev:astro": "astro dev",
-    "dev:optimizeImage": "node ./integrations/optimizeImage.js",
+    "dev:optimizeImage": "node ./src/integrations/optimizeImage.js",
     "build": "npm-run-all -s build:*",
     "build:astro": "astro build",
-    "build:relativePath": "node ./integrations/convertRelativePath.js",
+    "build:relativePath": "node ./src/integrations/convertRelativePath.js",
     "preview": "astro preview",
     "lint": "npm-run-all -s lint:*",
     "lint:html": "markuplint \"**/*.{astro,html}\"",

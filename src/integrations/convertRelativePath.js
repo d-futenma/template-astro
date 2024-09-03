@@ -1,6 +1,6 @@
 import { writeFileSync, readFileSync } from "fs";
 import { sync as globSync } from 'glob';
-import config from '../src/site-config.js';
+import config from '../site-config.js';
 
 const { build } = config;
 const { root, relativePath } = build;

@@ -3,7 +3,7 @@ import path from 'path'
 import url from 'url'
 import config from './src/site-config'
 import { siteUrl } from './src/consts'
-import deleteDirectory from './integrations/deleteDirectory'
+import deleteDirectory from './src/integrations/deleteDirectory'
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
 const { root, css, js, minify, deletes } = config.build

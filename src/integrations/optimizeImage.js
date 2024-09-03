@@ -3,7 +3,7 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 import sharp from 'sharp'
 import chokidar from 'chokidar'
-import config from '../src/site-config.js'
+import config from '../site-config.js'
 
 const { inputDir, outputDir, format, allowedExtensions, options } = config.images.optimize
 
