@@ -11,7 +11,7 @@
     "build:relativePath": "node ./src/integrations/convertRelativePath.js",
     "preview": "astro preview",
     "lint": "npm-run-all -s lint:*",
-    "lint:html": "markuplint \"**/*.{astro,html}\"",
+    "lint:html": "markuplint \"**/*.html\"",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:js": "eslint \"src/**/*.js\"",
     "format": "prettier --write \"htdocs/**/*.{html,css}\""
