@@ -3,7 +3,7 @@ import { sync as globSync } from 'glob';
 import config from '../site-config.js';
 
 const { build } = config;
-const { root, relativePath } = build;
+const { root, html } = build;
 
 const calcRelativePath = (filePath) => {
   const depth = filePath.split('/').length - root.split('/').length - 1;
@@ -11,7 +11,7 @@ const calcRelativePath = (filePath) => {
 };
 
 const convertRelativePath = () => {
-  if (!relativePath) return;
+  if (!html.relativePath) return;
 
   try {
     const files = globSync(`${root}/**/*.html`);

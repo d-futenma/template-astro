@@ -1,12 +1,4 @@
 const config = {
-  build: {
-    root        : 'htdocs',
-    css         : 'assets/css/style[extname]',
-    js          : 'assets/js/bundle.js',
-    relativePath: false,
-    minify      : true,
-    deletes     : ['url-list'],
-  },
   breakPoints: {
     sm: 767,
     md: 768,
@@ -28,6 +20,22 @@ const config = {
         webp: { quality: 80 },
       }
     }
+  },
+  build: {
+    root   : 'htdocs',
+    deletes: ['url-list'],
+    html: {
+      minify      : true,
+      relativePath: false,
+    },
+    css: {
+      path  : 'assets/css/style[extname]',
+      minify: true,
+    },
+    js: {
+      path  : 'assets/js/bundle.js',
+      minify: true,
+    },
   },
 }
 
