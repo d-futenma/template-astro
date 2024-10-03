@@ -7,7 +7,6 @@
 - [Markuplint](https://markuplint.dev/) - HTML 静的コード解析用ツール
 - [Stylelint](https://stylelint.io/) - CSS 静的コード解析用ツール
 - [ESLint](https://eslint.org/) - JavaScript 静的コード解析用ツール
-- [Prettier](https://prettier.io/) - コードフォーマッター
 
 ## 🧑‍🚀 必須環境
 [Node.js](https://nodejs.jp/) >= `v18.17.0`  
@@ -28,7 +27,6 @@ npm install
 | `npm run lint:html`    | HTML構文をチェック                    |
 | `npm run lint:css`     | CSS構文をチェック                     |
 | `npm run lint:js`      | JavaScript構文をチェック              |
-| `npm run format`       | ソースコードを自動整形                |
 
 ## 📁 ディレクトリ構成
 
@@ -36,11 +34,12 @@ npm install
 ├─ public/           # 静的ファイルを格納するディレクトリ
 ├─ src/              # サイト本体のソースコード
 │  ├─ components/    # コンポーネントを格納するディレクトリ
-│  ├─ images/        # 最適化（画像圧縮とWebP変換）したい画像を格納するディレクトリ
+│  ├─ images/        # 最適化（画像圧縮とWebP生成）したい画像を格納するディレクトリ
+│  ├─ integrations/  # インテグレーションを格納するディレクトリ
 │  ├─ layouts/       # ページのレイアウトを格納するディレクトリ
 │  ├─ pages/         # サイトのページを格納するディレクトリ
 │  ├─ scripts/       # JavaScriptファイルを格納するディレクトリ
-│  ├─ styles/        # Stylusファイルを格納するディレクトリ
+│  ├─ styles/        # CSSを格納するディレクトリ
 │  ├─ utilities/     # 汎用的なユーティリティ関数を格納するディレクトリ
 │  ├─ consts.js      # 汎用的な定数を定義するファイル
 │  └─ site-config.js # サイトの設定を定義するファイル
@@ -53,14 +52,10 @@ npm install
 ## ⚙️ 設定
 | プロパティ名                      | 説明                                            |
 | --------------------------------- | ----------------------------------------------- |
-| config.build.root                 | ビルド出力 ルート設定                           |
-| config.build.css                  | ビルド出力 CSSファイルのディレクトリ設定        |
-| config.build.js                   | ビルド出力 JavaScriptファイルのディレクトリ設定 |
-| config.build.relativePath         | ビルド出力 相対パスの設定                       |
-| config.build.minify               | ビルド出力 Minify設定                           |
-| config.build.deletes              | ビルド出力 削除ファイルの設定                   |
 | config.breakPoints.sm             | ブレイクポイント smサイズ設定                   |
 | config.breakPoints.md             | ブレイクポイント mdサイズ設定                   |
+| config.images.smDir               | Pictureコンポーネント smディレクトリ設定        |
+| config.images.mdDir               | Pictureコンポーネント mdディレクトリ設定        |
 | config.retinaSuffix               | Pictureコンポーネント Retina対応用Suffix設定    |
 | config.optimize.inputDir          | 画像最適化 出力前のディレクトリ設定             |
 | config.optimize.outputDir         | 画像最適化 出力ディレクトリ設定                 |
@@ -69,6 +64,15 @@ npm install
 | config.optimize.options.jpg       | 画像最適化 jpg形式の設定                        |
 | config.optimize.options.png       | 画像最適化 png形式の設定                        |
 | config.optimize.options.webp      | 画像最適化 webp形式の設定                       |
+| config.build.root                 | ビルド出力 ルート設定                           |
+| config.build.deletes              | ビルド出力 削除ファイルの設定                   |
+| config.build.html.minify          | ビルド出力 HTMLファイルのMinify設定             |
+| config.build.relativePath         | ビルド出力 相対パスの設定                       |
+| config.build.css.path             | ビルド出力 CSSファイルのディレクトリ設定        |
+| config.build.css.minify           | ビルド出力 CSSファイルのMinify設定              |
+| config.build.js.path              | ビルド出力 JavaScriptファイルのディレクトリ設定 |
+| config.build.js.minify            | ビルド出力 JavaScriptファイルのMinify設定       |
+| config.build.minify               | ビルド出力 Minify設定                           |
 
 ## 👀 公式ドキュメント
 - [Astro](https://docs.astro.build/ja/getting-started/)
