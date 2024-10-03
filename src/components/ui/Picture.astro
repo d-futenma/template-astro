@@ -1,8 +1,8 @@
 ---
-import imageSize from 'image-size';
 import config from '@/site-config';
 import extractFileDetails from '@/utilities/extractFileDetails';
 import normalizeSlashes from '@/utilities/normalizeSlashes';
+import getImageSizes from '@/utilities/getImageSizes';
 
 interface PictureProps {
   src: string;
@@ -23,8 +23,11 @@ const imagePath = (sizePrefix: string, isRetina: boolean = false): string => {
   return normalizeSlashes(`${dir}${sizePrefix}${baseName}${imageSuffix}.${ext}`);
 }
 
-const mdImageSizes = imageSize(`public${imagePath(mdDir)}`)
-const smImageSizes = imageSize(`public${imagePath(smDir)}`)
+const mdImagePath = `public${imagePath(mdDir)}`;
+const smImagePath = `public${imagePath(smDir)}`;
+
+const mdImageSizes = getImageSizes(mdImagePath);
+const smImageSizes = getImageSizes(smImagePath);
 ---
 <picture>
   <source media={`(min-width: ${md}px)`} srcset={`${imagePath(mdDir)}${retina ? `, ${imagePath(mdDir, true)} 2x` : ''}`} width={mdImageSizes.width} height={mdImageSizes.height}>

@@ -1,5 +1,5 @@
 ---
-import imageSize from 'image-size';
+import getImageSizes from '@/utilities/getImageSizes';
 
 interface ImageProps {
   src: string;
@@ -10,6 +10,7 @@ interface ImageProps {
 }
 
 const { src,  alt = '', loading = 'lazy', decoding = 'async', ...otherProps } = Astro.props as ImageProps;
-const imageSizes = imageSize(`public${src}`)
+const imagePath = `public${src}`;
+const imageSizes = getImageSizes(imagePath);
 ---
 <img src={src} alt={alt} width={imageSizes.width} height={imageSizes.height} loading={loading} decoding={decoding} {...otherProps}>
