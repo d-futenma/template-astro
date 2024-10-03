@@ -5,18 +5,12 @@ export default [
   js.configs.recommended,
   ...astro.configs['flat/recommended'],
   {
-    files: ['src/**/*.js', 'src/**/*.astro'],
+    files: ['src/**/*.js'],
     languageOptions: {
       parserOptions: {
         parser: '@typescript-eslint/parser',
       },
     },
-    rules: {
-      'no-undef': 'off',
-    },
-  },
-  {
-    files: ['src/utilities/**/*.js', 'integrations/**/*.js'],
     rules: {
       'no-undef': 'off',
     },
