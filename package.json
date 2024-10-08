@@ -12,8 +12,8 @@
     "build:format": "node ./src/integrations/beautifyHTML.js",
     "preview": "astro preview",
     "lint": "npm-run-all -s lint:*",
-    "lint:html": "markuplint \"src/**/*.html\"",
-    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:html": "markuplint \"**/*.html\"",
+    "lint:css": "stylelint \"**/*.css\"",
     "lint:js": "eslint \"src/**/*.js\"",
     "format": "html-beautify \"htdocs/**/*.html\""
   },
