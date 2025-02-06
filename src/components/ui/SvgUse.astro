@@ -1,4 +1,9 @@
 ---
+interface Props {
+  href: string;
+  title: string;
+}
+
 const { href, title = '', ...otherProps } = Astro.props;
 ---
 <svg role="img" aria-label={title? title : null} {...otherProps}>

@@ -1,12 +1,12 @@
 ---
-interface SplitText {
+interface Props {
   text: string;
   className?: string;
   Tag?: string;
   [key: string]: any;
 }
 
-const { text, className = 'char', Tag = 'span', ...otherProps } = Astro.props as SplitText;
+const { text, className = 'char', Tag = 'span', ...otherProps } = Astro.props;
 
 const splitCharacters = (text: string) => {
   const characters = []

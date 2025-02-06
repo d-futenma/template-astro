@@ -1,7 +1,7 @@
 ---
 import getImageSizes from '@/utilities/getImageSizes';
 
-interface ImageProps {
+interface Props {
   src: string;
   alt: string;
   loading?: 'eager' | 'lazy';
@@ -9,7 +9,7 @@ interface ImageProps {
   [key: string]: any;
 }
 
-const { src,  alt = '', loading = 'lazy', decoding = null, ...otherProps } = Astro.props as ImageProps;
+const { src,  alt = '', loading = 'lazy', decoding = null, ...otherProps } = Astro.props;
 const imagePath = `public${src}`;
 const imageSizes = getImageSizes(imagePath);
 ---
