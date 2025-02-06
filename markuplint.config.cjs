@@ -1,14 +1,11 @@
 module.exports = {
   extends: ['markuplint:recommended'],
-	parser: {
-		".astro$": "@markuplint/astro-parser",
-	},
   rules: {
     "['required-attr']": true
   },
   nodeRules: [
     {
-			selector: 'script',
+      selector: 'script',
       rules: {
         "required-attr": false
       }
