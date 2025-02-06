@@ -9,7 +9,7 @@ interface ImageProps {
   [key: string]: any;
 }
 
-const { src,  alt = '', loading = 'lazy', decoding = 'async', ...otherProps } = Astro.props as ImageProps;
+const { src,  alt = '', loading = 'lazy', decoding = null, ...otherProps } = Astro.props as ImageProps;
 const imagePath = `public${src}`;
 const imageSizes = getImageSizes(imagePath);
 ---

@@ -13,7 +13,7 @@ interface PictureProps {
   [key: string]: any;
 }
 
-const { src,  alt = '', loading = 'lazy', decoding = 'async', retina = true, ...otherProps } = Astro.props as PictureProps;
+const { src,  alt = '', loading = 'lazy', decoding = null, retina = true, ...otherProps } = Astro.props as PictureProps;
 const { md } = config.breakPoints;
 const { smDir, mdDir, retinaSuffix } = config.images;
 const { dir, baseName, ext } = extractFileDetails(src);
