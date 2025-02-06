@@ -25,12 +25,12 @@ const splitCharacters = (text: string) => {
 
 const characters = splitCharacters(text)
 ---
-{
-  characters.map((item) =>
-    item.type === 'char' ? (
-      <Tag class:list={[`${className} ${className}-${item.index}`]} set:html={item.value} {...otherProps}></Tag>
-    ) : (
-      <br />
+  {
+    characters.map((item) =>
+      item.type === 'char' ? (
+        <Tag class:list={[`${className} ${className}-${item.index}`]} set:html={item.value} {...otherProps}></Tag>
+      ) : (
+        <br />
+      )
     )
-  )
-}
+  }

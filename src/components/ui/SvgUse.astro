@@ -6,7 +6,7 @@ interface Props {
 
 const { href, title = '', ...otherProps } = Astro.props;
 ---
-<svg role="img" aria-label={title? title : null} {...otherProps}>
-  {title && <title>{title}</title>}
-  <use href={`#${href}`}></use>
-</svg>
+  <svg role="img" aria-label={title? title : null} {...otherProps}>
+    {title && <title>{title}</title>}
+    <use href={`#${href}`}></use>
+  </svg>

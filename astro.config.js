@@ -6,7 +6,7 @@ import { siteUrl } from './src/consts'
 import deleteDirectory from './src/integrations/deleteDirectory'
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
-const { root, css, js, deletes } = config.build
+const { root, html, css, js, deletes } = config.build
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
     host: true,
   },
   outDir: root,
-  compressHTML: true,
+  compressHTML: html.minify,
   build: {
     assets: 'assets',
     inlineStylesheets: 'never',
