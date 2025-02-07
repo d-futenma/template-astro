@@ -3,7 +3,7 @@ import js from '@eslint/js'
 export default [
   js.configs.recommended,
   {
-    files: ['src/scripts/**/*.js'],
+    files: ['src/**/*.js'],
     languageOptions: {
       parserOptions: {
         parser: '@typescript-eslint/parser',
