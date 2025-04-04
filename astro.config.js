@@ -39,6 +39,11 @@ export default defineConfig({
         },
       },
     },
+    server: {
+      watch: {
+        ignored: process.env.IGNORE_SCRIPTS === 'true' ? ['**/scripts/**'] : [],
+      },
+    },
     build: {
       minify: js.minify,
       cssMinify: css.minify,

@@ -1,11 +1,12 @@
 {
   "name": "template-astro",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "type": "module",
   "scripts": {
-    "dev": "npm-run-all -p dev:*",
+    "dev": "npm run dev:astro & npm run dev:optimize-image",
     "dev:astro": "astro dev",
-    "dev:optimizeImage": "node ./src/integrations/optimizeImage.js",
+    "dev:optimize-image": "node ./src/integrations/optimizeImage.js",
+    "dev:coding": "IGNORE_SCRIPTS=true npm run dev:astro & npm run dev:optimize-image",
     "build": "npm-run-all -s build:*",
     "build:astro": "astro build",
     "build:convert-relative-path": "node ./src/integrations/convertRelativePath.js",
