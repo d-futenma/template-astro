@@ -8,9 +8,9 @@ const config = {
     mdDir       : '/md/',
     retinaSuffix: '@2x',
     optimize: {
-      inputDir  : './src/images/',
-      outputDir : './public/',
-      format    : 'webp',
+      inputDir         : './src/images/',
+      outputDir        : './public/',
+      format           : 'webp',
       allowedExtensions: ['.jpg', '.png'],
       options: {
         jpg : { quality: 80, progressive: true },
@@ -29,12 +29,14 @@ const config = {
       relativePath: false,
     },
     css: {
-      path  : 'assets/css/style[extname]',
-      minify: true,
+      path          : 'assets/css/style.css',
+      minify        : true,
+      queryParameter: false,
     },
     js: {
-      path  : 'assets/js/bundle.js',
-      minify: true,
+      path          : 'assets/js/bundle.js',
+      minify        : true,
+      queryParameter: false,
     },
   },
 }
