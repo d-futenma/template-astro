@@ -15,7 +15,6 @@ export default class Loader {
   }
 
   private init() {
-    console.log('Loader');
     window.addEventListener("load", async () => {
       history.scrollRestoration = "manual";
       await this.addClass();

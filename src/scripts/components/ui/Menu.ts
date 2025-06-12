@@ -30,7 +30,7 @@ export default class Menu {
     this.menuCloseElements.forEach((menuCloseElement) => {
       menuCloseElement.addEventListener("click", this.hideMenu.bind(this));
     });
-    this.menuElement!.addEventListener("click", this.onLinkClick.bind(this));
+    this.menuElement!.addEventListener("click", this.handleLinkClick.bind(this));
   }
 
   private toggleMenu() {
@@ -47,7 +47,7 @@ export default class Menu {
     document.documentElement.classList.remove(this.classes.isMenuOpened);
   }
 
-  private onLinkClick(event: MouseEvent) {
+  private handleLinkClick(event: MouseEvent) {
     const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("a");
     const noClose = link?.hasAttribute("data-menu-no-close");
     if (!link || noClose) return;
