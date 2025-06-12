@@ -1,0 +1,82 @@
+$duration = 0.5s
+
+.menu
+  fixed top left
+  opacity 0
+  overflow hidden
+  overflow-y scroll
+  overscroll-behavior contain
+  pointer-events none
+  size 100%
+  transition opacity $duration, visibility $duration
+  visibility hidden
+  z-index 100
+  -webkit-overflow-scrolling touch
+
+  @supports (z-index calc(infinity))
+    z-index calc(infinity)
+
+  .is-menu-opened &
+    opacity 1
+    pointer-events auto
+    visibility visible
+
+.menu-overlay
+  background rgba(#000, 0.7)
+  fixed top left
+  size 100%
+
+.menu-body
+  margin-left auto
+  min-height 100%
+  position relative
+  // `overscroll-behavior`を有効にするため、1pxだけスクロール可能にする（height: calc(100% + 1px)）。コンテンツが既にスクロール可能な場合は不要。
+  size 87% calc(100% + 1px)
+  vertical-align middle
+
+.menu-content
+  background #010409
+  padding 95px 25px
+  size 100%
+
+.menu-btn
+  absolute top right
+  margin-block auto
+  size 50px
+  z-index 10
+
+.menu-btn-icon
+  absolute inset
+  display block
+  font-size 0
+  margin auto
+  overflow hidden
+  size 20
+  transform rotate(45deg)
+
+.menu-btn-line
+  background #f0f6fc
+  display block
+  position absolute
+  transform-origin 0 0
+  width 100%
+  z-index 100
+
+  &:nth-child(1)
+    left 0
+    size 100% 2
+    top calc(50% - 1px)
+
+  &:nth-child(2)
+    left calc(50% - 1px)
+    size 2 100%
+    top 0
+
+.menu-nav-item
+  font-size 13px
+
+  &:not(:first-child)
+    margin-top 27px
+
+  a
+    color #f0f6fc

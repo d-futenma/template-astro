@@ -25,12 +25,12 @@ const config = {
     root   : 'htdocs',
     deletes: ['url-list'],
     html: {
-      minify      : true,
+      minify      : false,
       relativePath: false,
     },
     css: {
       path          : 'assets/css/style.css',
-      minify        : true,
+      minify        : false,
       queryParameter: false,
     },
     js: {

@@ -1,0 +1,41 @@
+.header
+  background #010408
+  fixed top left
+  size 100% 50px
+  z-index 10
+
+.header-inner
+  align-items center
+  display flex
+  height 100%
+  padding 1em
+
+.header-menu-btn
+  absolute top right bottom
+  margin-block auto
+  size 50px
+  z-index 10
+
+.header-menu-btn-icon
+  absolute inset
+  display block
+  font-size 0
+  margin auto
+  size 20 17
+
+.header-menu-btn-line
+  background #f0f6fc
+  display block
+  position absolute
+  size 100% 2px
+
+  &:nth-child(1)
+    top 0
+
+  &:nth-child(2)
+    bottom 0
+    margin-block auto
+    top 0
+
+  &:nth-child(3)
+    bottom 0

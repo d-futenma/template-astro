@@ -1,16 +1,17 @@
 html
-  +media('md')
+  +media("md")
     font-size 62.5%
 
 body
-  font-vw(16)
+  font-vw(32)
   background-color $bg-color
   color $font-color
   font-family $body-font-family
-  font-feature-settings 'palt'
+  font-feature-settings "palt"
   line-height 1
   text-rendering auto
-  +media('md')
+
+  +media("md")
     font-rem(16)
 
 a
@@ -22,7 +23,8 @@ small
 img
   max-width 100%
   size 100% auto
-  +media('md')
+
+  +media("md")
     width auto
 
 svg

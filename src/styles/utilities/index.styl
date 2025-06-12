@@ -1,8 +1,8 @@
-+media('sm')
++media("sm")
   .md
     display none !important
 
-+media('md')
++media("md")
   .sm
     display none !important
 
@@ -16,11 +16,14 @@
   pointer-events none !important
   position fixed !important
 
-[data-hidden]
+[data-hidden="false"]
+  opacity 1
+  visibility visible
+
+[data-hidden="true"]
   opacity 0
   visibility hidden
 
-@media (scripting none)
-  [data-hidden]
+  @media (scripting none)
     opacity 1
     visibility visible

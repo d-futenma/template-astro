@@ -1,0 +1,18 @@
+$duration = 0.5s
+
+.loader
+  background #ffffff
+  fixed top left
+  size 100%
+  z-index 100
+
+  @supports (z-index calc(infinity))
+    z-index calc(infinity)
+
+  @media (scripting none)
+    display none
+
+  .is-loaded &
+    opacity 0
+    transition opacity $duration, visibility $duration
+    visibility hidden

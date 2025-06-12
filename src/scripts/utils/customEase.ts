@@ -1,0 +1,28 @@
+import { CustomEase } from "gsap/CustomEase";
+
+export const customEase = {
+  ease: CustomEase.create("ease", "0.42, 0.00, 0.58, 1.00"),
+  easeIn: CustomEase.create("easeIn", "0.42, 0.00, 1.00, 1.00"),
+  easeOut: CustomEase.create("easeOut", "0.00, 0.00, 0.58, 1.00"),
+  quad: CustomEase.create("quad", "0.48, 0.04, 0.52, 0.96"),
+  quadIn: CustomEase.create("quadIn", "0.26, 0.00, 0.60, 0.20"),
+  quadOut: CustomEase.create("quadOut", "0.40, 0.80, 0.74, 1.00"),
+  cubic: CustomEase.create("cubic", "0.66, 0.00, 0.34, 1.00"),
+  cubicIn: CustomEase.create("cubicIn", "0.40, 0.00, 0.68, 0.06"),
+  cubicOut: CustomEase.create("cubicOut", "0.32, 0.94, 0.60, 1.00"),
+  quart: CustomEase.create("quart", "0.76, 0.00, 0.24, 1.00"),
+  quartIn: CustomEase.create("quartIn", "0.52, 0.00, 0.74, 0.00"),
+  quartOut: CustomEase.create("quartOut", "0.26, 1.00, 0.48, 1.00"),
+  quint: CustomEase.create("quint", "0.84, 0.00, 0.16, 1.00"),
+  quintIn: CustomEase.create("quintIn", "0.64, 0.00, 0.78, 0.00"),
+  quintOut: CustomEase.create("quintOut", "0.22, 1.00, 0.36, 1.00"),
+  expo: CustomEase.create("expo", "0.90, 0.00, 0.10, 1.00"),
+  expoIn: CustomEase.create("expoIn", "0.66, 0.00, 0.86, 0.00"),
+  expoOut: CustomEase.create("expoOut", "0.14, 1.00, 0.34, 1.00"),
+  circ: CustomEase.create("circ", "0.88, 0.14, 0.12, 0.86"),
+  circIn: CustomEase.create("circIn", "0.54, 0.00, 1.00, 0.44"),
+  circOut: CustomEase.create("circOut", "0.00, 0.56, 0.46, 1.00"),
+  back: CustomEase.create("back", "0.68, -0.55, 0.27, 1.55"),
+  backIn: CustomEase.create("backIn", "0.60, -0.28, 0.73, 0.04"),
+  backOut: CustomEase.create("backOut", "0.17, 0.89, 0.32, 1.27"),
+};

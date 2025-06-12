@@ -11,3 +11,22 @@ export const siteOgType      = 'website'
 
 // Path
 export const pathImg = '/assets/img/'
+
+// NavItem
+export const home = {
+  name: 'HOME',
+  href: '/',
+}
+
+export const about = {
+  name: 'ABOUT',
+  href: '/about/',
+}
+
+export const contact = {
+  name: 'CONTACT',
+  href: '/contact/',
+}
+
+// NavItems
+export const navItems = [home, about, contact]
