@@ -4,12 +4,40 @@
   size 100% 50px
   z-index 10
 
+  +media("md")
+    height 65px
+
 .header-inner
   align-items center
   display flex
   height 100%
-  padding 1em
 
+// ==========================================================================
+// Logo
+// ==========================================================================
+.header-logo
+  font-size 14px
+  margin-left 20px
+
+// ==========================================================================
+// Nav
+// ==========================================================================
+.header-nav
+  margin-inline auto
+
+.header-nav-list
+  display flex
+  gap 0 5px
+
+.header-nav-item
+  font-rem(14)
+
+.header-nav-link
+  padding 10px
+
+// ==========================================================================
+// Menu Button
+// ==========================================================================
 .header-menu-btn
   absolute top right bottom
   margin-block auto

@@ -22,8 +22,8 @@ $duration = 0.5s
     visibility visible
 
 .menu-overlay
+  absolute top left
   background rgba(#000, 0.7)
-  fixed top left
   size 100%
 
 .menu-body
@@ -33,6 +33,9 @@ $duration = 0.5s
   // `overscroll-behavior`を有効にするため、1pxだけスクロール可能にする（height: calc(100% + 1px)）。コンテンツが既にスクロール可能な場合は不要。
   size 87% calc(100% + 1px)
   vertical-align middle
+
+  +media("md")
+    width 25%
 
 .menu-content
   background #010409
@@ -44,6 +47,9 @@ $duration = 0.5s
   margin-block auto
   size 50px
   z-index 10
+
+  +media("md")
+    top 8px
 
 .menu-btn-icon
   absolute inset
@@ -73,7 +79,7 @@ $duration = 0.5s
     top 0
 
 .menu-nav-item
-  font-size 13px
+  font-size 14px
 
   &:not(:first-child)
     margin-top 27px

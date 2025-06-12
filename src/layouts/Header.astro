@@ -1,15 +1,29 @@
 ---
-import { home } from "@/consts";
+import { home, navItems } from "@/consts";
 ---
 <header class="header">
   <div class="header-inner">
     <h1 class="header-logo"><a href={home.href}>Astro Template</a></h1>
 
-    <button class="header-menu-btn sm" type="button" aria-label="メニューを開く" data-menu-btn>
+    <nav class="header-nav md" aria-label="メインメニュー">
+      <ul class="header-nav-list">
+        {
+          navItems.map((navItem) => (
+            <li class="header-nav-item">
+              <a class="header-nav-link" href={navItem.href}>{navItem.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button class="header-menu-btn" type="button" aria-label="メニューを開く" data-menu-btn>
       <span class="header-menu-btn-icon">
-        <span class="header-menu-btn-line"></span>
-        <span class="header-menu-btn-line"></span>
-        <span class="header-menu-btn-line"></span>
+        {
+          [...Array(3)].map(() => (
+            <span class="header-menu-btn-line"></span>
+          ))
+        }
       </span>
     </button>
   </div>
