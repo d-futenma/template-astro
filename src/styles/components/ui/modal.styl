@@ -1,6 +1,5 @@
-$duration = 0.5s
 
-.menu
+.modal
   fixed top left
   opacity 0
   overflow-y scroll
@@ -16,41 +15,39 @@ $duration = 0.5s
   &::-webkit-scrollbar
     display none
 
-  .is-menu-opened &
+  .is-modal-opened&
     opacity 1
     pointer-events auto
     visibility visible
 
-.menu-inner
+.modal-inner
+  align-items center
   display flex
+  justify-content center
   min-height 100%
   position relative
 
-.menu-overlay
+.modal-overlay
   absolute top left
   background rgba(#000, 0.7)
   size 100%
 
-.menu-body
+.modal-body
   background #010409
-  margin-left auto
-  padding 95px 25px
+  margin-block 50px
+  padding 50px
   position relative
-  width 87%
+  width 80%
 
   +media("md")
-    width 25%
+    width 50%
 
-.menu-close-btn
+.modal-close-btn
   absolute top right
-  margin-block auto
   size 50
   z-index 10
 
-  +media("md")
-    top 8px
-
-.menu-close-btn-icon
+.modal-close-btn-icon
   absolute inset
   display block
   font-size 0
@@ -59,7 +56,7 @@ $duration = 0.5s
   size 20
   transform rotate(45deg)
 
-.menu-close-btn-line
+.modal-close-btn-line
   background #f0f6fc
   display block
   position absolute
@@ -76,12 +73,3 @@ $duration = 0.5s
     left calc(50% - 1px)
     size 2 100%
     top 0
-
-.menu-nav-item
-  font-size 14px
-
-  &:not(:first-child)
-    margin-top 27px
-
-  a
-    color #f0f6fc

@@ -32,10 +32,11 @@ const { title = siteTitle[0], description = siteDescription[0], ogTitle = siteTi
     <div class="wrapper">
       <Header />
       <main class="main">
-        <slot />
+        <slot name="main" />
       </main>
       <Footer />
       <Menu />
+      <slot name="modal" />
     </div>
   </body>
 </html>

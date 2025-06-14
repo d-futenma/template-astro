@@ -2,26 +2,17 @@
 import { navItems } from "@/consts";
 ---
 <div class="menu" data-menu>
-  <div class="menu-overlay" data-menu-close></div>
-  
-  <div class="menu-body">
-    <div class="menu-content">
-      <button class="menu-btn" type="button" aria-label="メニューを閉じる" data-menu-close>
-        <span class="menu-btn-icon">
-          <span class="menu-btn-line"></span>
-          <span class="menu-btn-line"></span>
-        </span>
-      </button>
+  <div class="menu-inner" data-menu-inner>
+    <div class="menu-overlay" data-menu-close></div>
+
+    <div class="menu-body">
+      <button class="menu-close-btn" type="button" aria-label="メニューを閉じる" data-menu-close><span class="menu-close-btn-icon"><span class="menu-close-btn-line"></span><span class="menu-close-btn-line"></span></span></button>
 
       <nav class="menu-nav" aria-label="メインメニュー">
         <ul class="menu-nav-list">
           {
             navItems.map((navItem) => (
-              <li class="menu-nav-item">
-                <a class="menu-nav-link" href={navItem.href}>
-                  <span class="menu-nav-label">{navItem.name}</span>
-                </a>
-              </li>
+              <li class="menu-nav-item"><a class="menu-nav-link" href={navItem.href}><span class="menu-nav-label">{navItem.name}</span></a></li>
             ))
           }
         </ul>

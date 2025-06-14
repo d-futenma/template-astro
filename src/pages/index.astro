@@ -8,21 +8,25 @@ const description = "Homeディスクリプション";
 const bodyClass = "page-home";
 ---
 <Layout title={title} description={description} bodyClass={bodyClass}>
-  {/* dummy */}
-  <div class="dummy-gallery">
-    <div class="dummy-gallery-items">
-      {
-        [...Array(14).keys()].map((i) => (
-          <div class={`dummy-gallery-item-${i + 1} dummy-gallery-item`}><Img src={`${pathImg}dummy/img-${i + 1}.webp`} alt="" /></div>
-        ))
-      }
+  <Fragment slot="main">
+    {/* dummy */}
+    <div class="dummy-gallery">
+      <div class="dummy-gallery-items">
+        {
+          [...Array(14).keys()].map((i) => (
+            <div class={`dummy-gallery-item-${i + 1} dummy-gallery-item`}><Img src={`${pathImg}dummy/img-${i + 1}.webp`} alt="" /></div>
+          ))
+        }
+      </div>
     </div>
-  </div>
-  {/* dummy */}
+    {/* dummy */}
+  </Fragment>
 </Layout>
 
 {/* dummy */}
 <style lang="stylus">
+  .modal-trigger
+    padding 0 10px
   .dummy-gallery-items
     display grid
     gap vw-sm(20)
@@ -96,18 +100,5 @@ const bodyClass = "page-home";
   .dummy-gallery-item-14
     grid-column 12 / -1
     grid-row 13 / -1
-
-  .heading
-    calc-aspect-ratio(650, 28)
-    fill #ffffff
-    fixed top 50% left 50%
-    overflow hidden
-    transform translate(-50%, -50%)
-    width vw-sm(650)
-    z-index 100
-
-    +media('md')
-      calc-aspect-ratio(900, 39)
-      width vw-md(900)
 </style>
 {/* dummy */}

@@ -20,12 +20,12 @@ export const home = {
 
 export const about = {
   name: 'ABOUT',
-  href: '/about/',
+  href: '#',
 }
 
 export const contact = {
   name: 'CONTACT',
-  href: '/contact/',
+  href: '#',
 }
 
 // NavItems

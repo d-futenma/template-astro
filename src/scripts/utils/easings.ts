@@ -215,13 +215,14 @@ function clamp(value: number, min = 0, max = 1): number {
   return value;
 }
 
-export type ExtendedEasingFn = (t: number, duration?: number, delay?: number) => number;
+export type ParametricEasing = (t: number, duration?: number, delay?: number) => number;
 
-export const easings: Record<string, ExtendedEasingFn> = {};
+export const easings: Record<string, ParametricEasing> = {};
+
 for (const key in baseEasings) {
-  const fn = baseEasings[key];
+  const coreEasing = baseEasings[key];
   easings[key] = (t: number, duration = 1, delay = 0): number => {
     const normalized = clamp((t - delay) / duration);
-    return fn(normalized);
+    return coreEasing(normalized);
   };
 }

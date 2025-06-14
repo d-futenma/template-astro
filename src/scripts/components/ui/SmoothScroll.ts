@@ -3,20 +3,20 @@ import { easings } from "@/scripts/utils/easings";
 export default class SmoothScroll {
   private anchorElements: HTMLAnchorElement[] = [];
 
+  private get options() {
+    return {
+      duration: 1.0,
+      easing: "easeOutCirc",
+      delay: 0,
+      offset: 0,
+      disableAttribute: "data-smooth-scroll-disable",
+    };
+  }
+
   constructor() {
     this.anchorElements = [...document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]')];
     if (!this.anchorElements.length) return;
     this.bindEvent();
-  }
-
-  private get options() {
-    return {
-      duration: 1.0,
-      delay: 0,
-      easing: "easeOutCirc",
-      offset: 0,
-      disableAttribute: "data-smooth-scroll-disable",
-    };
   }
 
   private bindEvent() {

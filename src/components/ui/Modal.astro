@@ -1,0 +1,29 @@
+---
+interface Props {
+  modalId: string;
+}
+
+const { modalId } = Astro.props;
+---
+{/*
+example:
+
+<div class="modal-trigger" aria-label="モーダルウィンドウを開く" data-modal-trigger data-modal-target="foo">Button</div>
+
+<Modal modalId="foo">
+  <div class="modal-content">
+    <div><Img src="https://placehold.jp/B3C7FF/B3C7FF/640x480.png" alt="" style="width: 100%;" /></div>
+  </div>
+</Modal>
+*/}
+
+<div class="modal" data-modal data-modal-id={modalId}>
+  <div class="modal-inner" data-modal-inner>
+    <div class="modal-overlay" data-modal-close></div>
+
+    <div class="modal-body">
+      <button class="modal-close-btn" type="button" aria-label="モーダルウィンドウを閉じる" data-modal-close><span class="modal-close-btn-icon"><span class="modal-close-btn-line"></span><span class="modal-close-btn-line"></span></span></button>
+      <slot />
+    </div>
+  </div>
+</div>

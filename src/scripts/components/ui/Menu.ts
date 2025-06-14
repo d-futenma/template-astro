@@ -1,6 +1,9 @@
+import OverscrollController from "@/scripts/utils/OverscrollController";
+
 export default class Menu {
   private menuButtonElement: HTMLButtonElement | null;
   private menuElement: HTMLDivElement | null;
+  private menuInnerElement: HTMLDivElement | null;
   private menuCloseElements: HTMLElement[] = [];
 
   private get classes() {
@@ -13,17 +16,16 @@ export default class Menu {
     this.menuButtonElement = document.querySelector<HTMLButtonElement>("[data-menu-btn]");
     this.menuElement = document.querySelector<HTMLDivElement>("[data-menu]");
     if (!this.menuButtonElement || !this.menuElement) return;
+    this.menuInnerElement = this.menuElement.querySelector<HTMLDivElement>("[data-menu-inner]");
     this.menuCloseElements = [...this.menuElement.querySelectorAll<HTMLElement>("[data-menu-close]")];
 
     this.init();
   }
 
   private init() {
-    this.setupStyle();
+    new OverscrollController(this.menuElement, this.menuInnerElement);
     this.bindEvents();
   }
-
-  private setupStyle() {}
 
   private bindEvents() {
     this.menuButtonElement!.addEventListener("click", this.toggleMenu.bind(this));

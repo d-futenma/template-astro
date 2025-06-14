@@ -8,7 +8,7 @@ export default class ResizeReload {
     this.bindEvent();
   }
 
-  bindEvent() {
+  private bindEvent() {
     this.mq.addEventListener("change", () => location.reload());
   }
 }
