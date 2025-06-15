@@ -2,6 +2,7 @@
 interface Props {
   href: string;
   title?: string;
+  [key: string]: any;
 }
 
 const { href, title = '', ...otherProps } = Astro.props;

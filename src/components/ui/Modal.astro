@@ -1,9 +1,10 @@
 ---
 interface Props {
   modalId: string;
+  [key: string]: any;
 }
 
-const { modalId } = Astro.props;
+const { modalId, ...otherProps } = Astro.props;
 ---
 {/*
 example:
@@ -17,7 +18,7 @@ example:
 </Modal>
 */}
 
-<div class="modal" data-modal data-modal-id={modalId}>
+<div class="modal" data-modal data-modal-id={modalId} {...otherProps}>
   <div class="modal-inner" data-modal-inner>
     <div class="modal-overlay" data-modal-close></div>
 

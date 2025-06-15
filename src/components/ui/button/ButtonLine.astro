@@ -1,0 +1,25 @@
+---
+import { siteUrl, siteDescription } from "@/consts";
+import encode from '@/utilities/encode';
+import SvgUse from '@/components/ui/SvgUse.astro';
+
+interface Props {
+  url?: string;
+  description?: string[],
+  [key: string]: any;
+}
+
+const { url = siteUrl, description = siteDescription, target, ...otherProps }: Props = Astro.props;
+---
+{/*
+example:
+
+<ButtonLine />
+*/}
+
+<a class="btn-line btn sm" href={`https://timeline.line.me/social-plugin/share?url=${encode(`${description[0]}\n${url}`)}`} target="_blank" {...otherProps}>
+  <SvgUse class="btn-line-icon" href="icon-line" title="LINE" />
+</a>
+<a class="btn-line btn md" href={`https://social-plugins.line.me/lineit/share?text=${encode(`${description[0]}\n${url}`)}`} target="_blank" {...otherProps}>
+  <SvgUse class="btn-line-icon" href="icon-line" title="LINE" />
+</a>

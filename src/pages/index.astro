@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { pathImg } from "@/consts";
 import Img from "@/components/ui/Img.astro";
+import Modal from "@/components/ui/Modal.astro";
 
 const title = "Home";
 const description = "Homeディスクリプション";
@@ -9,6 +10,9 @@ const bodyClass = "page-home";
 ---
 <Layout title={title} description={description} bodyClass={bodyClass}>
   <Fragment slot="main">
+    <div class="modal-trigger" aria-label="モーダルウィンドウを開く" data-modal-trigger data-modal-target="video-1">video-1</div>
+    <div class="modal-trigger" aria-label="モーダルウィンドウを開く" data-modal-trigger data-modal-target="video-2">video-2</div>
+
     {/* dummy */}
     <div class="dummy-gallery">
       <div class="dummy-gallery-items">
@@ -20,6 +24,27 @@ const bodyClass = "page-home";
       </div>
     </div>
     {/* dummy */}
+  </Fragment>
+
+  <Fragment slot="modal">
+    <Modal modalId="video-1">
+      <div class="modal-content">
+        <p>video-1</p>
+        <div class="video" data-youtube>
+          <div class="video-thumb" data-youtube-thumb><Img src="https://placehold.jp/B3C7FF/B3C7FF/640x480.png" alt="" style="width: 100%;" /></div>
+          <div class="video-player" data-youtube-id="iCbqQrxwEEE"></div>
+        </div>
+      </div>
+    </Modal>
+
+    <Modal modalId="video-2">
+      <div class="modal-content">
+        <p>video-2</p>
+        <div data-youtube>
+          <div data-youtube-thumb><Img src="https://placehold.jp/B3C7FF/B3C7FF/640x480.png" alt="" style="width: 100%;" /></div>
+          <div data-youtube-id="FPx68UiiBr8"></div>
+        </div>
+    </Modal>
   </Fragment>
 </Layout>
 

@@ -1,0 +1,20 @@
+---
+import { siteUrl } from "@/consts";
+import SvgUse from '@/components/ui/SvgUse.astro';
+
+interface Props {
+  url?: string;
+  [key: string]: any;
+}
+
+const { url = siteUrl, ...otherProps }: Props = Astro.props;
+---
+{/*
+example:
+
+<ButtonFacebook />
+*/}
+
+<a class="btn-facebook btn" href=`http://www.facebook.com/sharer.php?u=${url}` target="_blank" {...otherProps}>
+  <SvgUse class="btn-facebook-icon" href="icon-facebook" title="Facebook" />
+</a>

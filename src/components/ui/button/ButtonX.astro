@@ -1,0 +1,22 @@
+---
+import { siteUrl, siteDescription } from "@/consts";
+import encode from '@/utilities/encode';
+import SvgUse from '@/components/ui/SvgUse.astro';
+
+interface Props {
+  url?: string;
+  description?: string[],
+  [key: string]: any;
+}
+
+const { url = siteUrl, description = siteDescription, target, ...otherProps }: Props = Astro.props;
+---
+{/*
+example:
+
+<ButtonX />
+*/}
+
+<a class="btn-x btn" href=`http://twitter.com/share?url=${url}&text=${encode(description[0])}&hashtags=${encode('hashtag')}` target="_blank" {...otherProps}>
+  <SvgUse class="btn-x-icon" href="icon-x" title="X" />
+</a>
