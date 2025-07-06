@@ -1,0 +1,13 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "postcssSorting.config": {
+    "order": [
+      "custom-properties",
+      "declarations",
+      "dollar-variables",
+      "at-rules",
+      "rules",
+    ],
+    "properties-order": "alphabetical"
+  }
+}

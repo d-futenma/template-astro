@@ -1,0 +1,39 @@
+html {
+  @media (--md) {
+    font-size: 62.5%;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-font);
+  font-family: var(--font-default);
+  font-feature-settings: "palt";
+  line-height: 1;
+  text-rendering: auto;
+  @mixin font-vw var(--viewport-sm), 32;
+
+  @media (--md) {
+    @mixin font-rem 16;
+  }
+}
+
+a {
+  color: var(--color-link);
+}
+
+small {
+  font-size: 100%;
+}
+
+img {
+  max-width: 100%;
+
+  @media (--sm) {
+    width: 100%;
+  }
+}
+
+svg {
+  @mixin size 100%;
+}

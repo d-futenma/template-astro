@@ -1,0 +1,15 @@
+{
+  "singleQuote": true,
+  "printWidth": 9999,
+  "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": ["**/*.css"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

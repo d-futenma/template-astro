@@ -1,0 +1,22 @@
+@media (--sm) {
+  .md {
+    display: none !important;
+  }
+}
+
+@media (--md) {
+  .sm {
+    display: none !important;
+  }
+}
+
+.visually-hidden {
+  block-size: 4px !important;
+  contain: strict !important;
+  display: block !important;
+  inline-size: 4px !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+}
