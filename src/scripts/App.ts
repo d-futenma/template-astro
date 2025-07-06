@@ -4,6 +4,6 @@ export default class App {
   }
 
   private init() {
-    console.log('Hello World');
+    console.log('Hello World!');
   }
 }

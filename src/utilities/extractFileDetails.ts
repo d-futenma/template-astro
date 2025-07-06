@@ -1,4 +1,10 @@
-const extractFileDetails = (filePath) => {
+interface FileDetails {
+  dir: string;
+  baseName: string;
+  ext: string;
+}
+
+const extractFileDetails = (filePath: string): FileDetails => {
   const lastIndex = filePath.lastIndexOf('/');
   const dir = filePath.substring(0, lastIndex + 1);
   const name = filePath.substring(lastIndex + 1);
@@ -7,4 +13,4 @@ const extractFileDetails = (filePath) => {
   return { dir, baseName, ext };
 };
 
-export default extractFileDetails
+export default extractFileDetails;
