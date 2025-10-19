@@ -1,6 +1,6 @@
 html {
   @media (--md) {
-    @mixin font-vw var(768), 16;
+    @mixin font-vw 768, 16;
   }
 
   @media (--xl) {
