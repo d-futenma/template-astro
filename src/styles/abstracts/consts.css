@@ -1,13 +1,14 @@
 /* Media Query */
-@custom-media --sm (width <=768px);
-@custom-media --md (width >=769px);
-@custom-media --md-to-lg (769px <=width <=959px);
-@custom-media --md-to-xl (769px <=width <=1023px);
+@custom-media --sm (width <=767px);
+@custom-media --md (width >=768px);
+@custom-media --md-to-lg (768px <=width <=959px);
+@custom-media --md-to-xl (768px <=width <=1023px);
+@custom-media --md-to-xxl (768px <=width <=1279px);
 @custom-media --lg (width >=960px);
 @custom-media --xl (width >=1024px);
 @custom-media --xxl (width >=1280px);
 @custom-media --sm-landscape (width <=896px) and (orientation: landscape);
-@custom-media --md-retina (width >=769px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --md-retina (width >=768px) and (-webkit-min-device-pixel-ratio: 2);
 
 :root {
   /* Size */
@@ -18,12 +19,10 @@
   --font-default: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 
   /* Color */
-  --color-black: #000000;
-  --color-white: #ffffff;
-
-  --color-bg: var(--color-white);
-  --color-font: var(--color-black);
-  --color-link: var(--color-black);
+  --color-black: #0D1116;
+  --color-white: #f0f6fc;
+  --color-gray: #31363E;
+  --color-blue: #3AB4D4;
 
   /* Easing */
   --ease-sine-in: cubic-bezier(0.47, 0, 0.745, 0.715);

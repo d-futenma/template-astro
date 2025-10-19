@@ -1,25 +1,29 @@
 html {
   @media (--md) {
-    font-size: 62.5%;
+    @mixin font-vw var(768), 16;
+  }
+
+  @media (--xl) {
+    @mixin font-vw var(--viewport-md), 16;
   }
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-font);
+  background-color: var(--color-black);
+  color: var(--color-white);
   font-family: var(--font-default);
   font-feature-settings: "palt";
+  font-size: min(vw(32, var(--viewport-sm)), half(32));
   line-height: 1;
   text-rendering: auto;
-  @mixin font-vw var(--viewport-sm), 32;
 
   @media (--md) {
-    @mixin font-rem 16;
+    font-size: min(rem(16), 16px);
   }
 }
 
 a {
-  color: var(--color-link);
+  color: var(--color-white);
 }
 
 small {
@@ -27,6 +31,7 @@ small {
 }
 
 img {
+  height: auto;
   max-width: 100%;
 
   @media (--sm) {
@@ -36,4 +41,8 @@ img {
 
 svg {
   @mixin size 100%;
+}
+
+section {
+  position: relative;
 }

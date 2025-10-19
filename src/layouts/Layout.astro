@@ -6,7 +6,7 @@ import {
   defaultOgUrl,
   defaultOgImage,
   defaultOgType,
-  pathImg
+  pathImg,
 } from "@/consts";
 import getMeta from "@/utilities/getMeta";
 import SvgSprites from "@/components/ui/SvgSprites.astro";
@@ -21,10 +21,11 @@ const {
   pageOgUrl,
   pageOgImage,
   pageOgType,
-  pageBodyClass
+  pageBodyClass,
+  ...otherProps
 } = Astro.props;
-const [title, ogTitle] = getMeta(pageTitle, defaultTitle);
-const [description, ogDescription] = getMeta(pageDescription, defaultDescription);
+const [title, ogTitle] = getMeta(pageTitle, defaultTitle as [string, string]);
+const [description, ogDescription] = getMeta(pageDescription, defaultDescription as [string, string]);
 const ogSiteName = pageOgSiteName ?? defaultOgSiteName;
 const ogUrl = pageOgUrl ?? defaultOgUrl;
 const ogImage = pageOgImage ?? defaultOgImage;
@@ -48,7 +49,7 @@ const ogType = pageOgType ?? defaultOgType;
     <link rel="shortcut icon" type="image/ico" href={`${pathImg}favicon/favicon.svg`} />
     <script src="../scripts/main.ts"></script>
   </head>
-  <body class={pageBodyClass}>
+  <body class={pageBodyClass} {...otherProps}>
     <SvgSprites />
     <div class="wrapper">
       <Header />

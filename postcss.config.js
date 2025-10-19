@@ -10,10 +10,43 @@ import postcssDiscardComments from 'postcss-discard-comments';
  */
 const isMissing = (value) => value == null || value === 'null' || value === '';
 
+const addPixel = (value) => {
+  if (isMissing(value) || value === 'auto') return value;
+  if (typeof value === 'number') {
+    if (!Number.isFinite(value)) return value;
+    return `${value}px`;
+  }
+  if (typeof value === 'string' && /^-?\d+(\.\d+)?$/.test(value)) {
+    return `${value}px`;
+  }
+  return value;
+};
+
 /**
  * PostCSS Functions
  */
 const functions = {
+  half: (value) => {
+    if (isMissing(value) || value === 'auto') return value;
+
+    if (typeof value === 'string' && /\b(calc|min|max|clamp|var)\s*\(/i.test(value)) {
+      return `calc((${value}) / 2)`;
+    }
+
+    const numberUnitMatch = String(value).match(/^\s*([+-]?\d+(?:\.\d+)?)([a-z%]*)\s*$/i);
+    if (numberUnitMatch) {
+      const numericValue = Number(numberUnitMatch[1]);
+      const unit = numberUnitMatch[2] || '';
+
+      if (Number.isFinite(numericValue)) {
+        const halved = numericValue / 2;
+        return unit ? `${halved}${unit}` : addPixel(halved);
+      }
+    }
+
+    return value;
+  },
+
   percentage: (value, base) => {
     if (isMissing(value) || isMissing(base)) {
       console.error('\x1b[31m[postcss-functions] percentage: value or base is null\x1b[0m');
@@ -29,21 +62,24 @@ const functions = {
     }
     return `calc(${value} / ${viewport} * 100vw)`;
   },
+
+  rem: (value) => {
+    if (isMissing(value)) {
+      console.error('\x1b[31m[rem] rem: value is null\x1b[0m');
+      return '0rem';
+    }
+
+    // 基準となるルートフォントサイズ。
+    // html に font-size: 62.5%; を指定している場合は 10 を指定。
+    const rootFontSize = 16;
+
+    return `calc(${value} / ${rootFontSize} * 1rem)`;
+  },
 };
 
 /**
  * PostCSS Mixins Utilities
  */
-const addPixel = (value) => {
-  if (isMissing(value) || value === 'auto') {
-    return value;
-  }
-  if (typeof value === 'number' || /^-?\d+(\.\d+)?$/.test(value)) {
-    return `${value}px`;
-  }
-  return value;
-};
-
 const applyPosition = (atRule, type, ...args) => {
   const decls = [postcss.decl({ prop: 'position', value: type })];
   args.forEach(arg => {
@@ -128,7 +164,10 @@ const mixins = {
       console.error('\x1b[31m[postcss-mixins] font-rem: fontSize is null\x1b[0m');
       return;
     }
-    const decls = [postcss.decl({ prop: 'font-size', value: `calc(${fontSize} / 10 * 1rem)` })];
+    // 基準となるルートフォントサイズ。
+    // html に font-size: 62.5%; を指定している場合は 10 を指定。
+    const rootFontSize = 16;
+    const decls = [postcss.decl({ prop: 'font-size', value: `calc(${fontSize} / ${rootFontSize} * 1rem)` })];
     applyFontProperties(decls, fontSize, lineHeight, letterSpacing);
     atRule.replaceWith(decls);
   },
@@ -149,7 +188,7 @@ export default {
     postcssPresetEnv({
       features: {
         'custom-media-queries': true,
-        'custom-properties': false
+        'custom-properties': false,
       }
     }),
     postcssDiscardComments({
