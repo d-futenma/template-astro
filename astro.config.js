@@ -37,6 +37,17 @@ export default defineConfig({
         ignored: process.env.IGNORE_SCRIPTS === 'true' ? ['**/scripts/**'] : [],
       },
     },
+    environments: {
+      client: {
+        build: {
+          rollupOptions: {
+            output: {
+              entryFileNames: js.path,
+            },
+          },
+        },
+      },
+    },
     build: {
       minify: js.minify,
       cssMinify: css.minify,
@@ -44,15 +55,16 @@ export default defineConfig({
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
-            const extType = assetInfo.name.split('.').at(-1)
-            if (/png|jpg|jpeg|gif|svg|webp/.test(extType)) {
+            const fileName = assetInfo.names?.[0] ?? ''
+            const extType = fileName.split('.').at(-1)
+            if (/png|jpg|jpeg|gif|svg|webp/.test(extType ?? '')) {
               return `assets/img/[name][extname]`
             }
-            if (/css|scss|styl/i.test(extType)) {
+            if (/css|scss|styl/i.test(extType ?? '')) {
               return css.path
             }
+            return `assets/[name][extname]`
           },
-          entryFileNames: js.path,
         },
       },
     },
