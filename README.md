@@ -13,7 +13,7 @@
 - [ESLint](https://eslint.org/) - TypeScript コード解析用ツール
 
 ## 🧑‍🚀 必須環境
-[Node.js](https://nodejs.jp/) >= `v18.17.0`  
+[Node.js](https://nodejs.jp/) >= `v22`  
 
 ## 📟 セットアップ
 ```
