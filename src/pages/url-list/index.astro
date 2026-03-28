@@ -1,49 +1,134 @@
 ---
-interface StaticPathParams {
-  params: { [key: string]: string };
+interface StaticPathItem {
+  params: Record<string, string | undefined>;
+  props?: Record<string, unknown>;
 }
 
-interface Page {
+interface PageModule {
   url?: string;
-  file: string;
-  getStaticPaths?: () => Promise<StaticPathParams[]>;
+  getStaticPaths?: () => Promise<StaticPathItem[]>;
 }
 
-const pageModules = import.meta.glob<Page>('/src/pages/**/*.astro', { eager: true });
-const allPages = Object.entries(pageModules).map(([file, mod]) => ({ file, ...mod }));
-let pathList = [];
+interface Page extends PageModule {
+  file: string;
+}
 
-const changeExtension = (filename: string): string => filename.replace(/\.astro$/, '.html');
+interface PathItem {
+  file: string;
+  url: string;
+  label: string;
+}
 
-const extractPath = (fullPath: string): string => {
-  const path = fullPath.split('/src/pages/')[1];
-  return changeExtension(path);
+const pageModules = import.meta.glob<PageModule>('/src/pages/**/*.astro', { eager: true });
+const allPages: Page[] = Object.entries(pageModules).map(([file, mod]) => ({
+  file,
+  ...mod,
+}));
+
+const pathList: PathItem[] = [];
+
+const changeExtension = (filename: string): string => {
+  return filename.replace(/\.astro$/, '.html');
 };
 
-const generateUrl = async (page: Page) => {
-  let baseUrl = page.url || '/';
+const extractRoutePath = (fullPath: string): string => {
+  return fullPath.split('/src/pages/')[1] ?? '';
+};
 
+const normalizeSlashes = (value: string): string => {
+  return value.replace(/\/+/g, '/');
+};
+
+const trimSlashes = (value: string): string => {
+  return value.replace(/^\/+|\/+$/g, '');
+};
+
+const toUrl = (routePath: string): string => {
+  const normalized = trimSlashes(routePath);
+
+  if (normalized === '' || normalized === 'index.html') {
+    return '/';
+  }
+
+  if (normalized.endsWith('/index.html')) {
+    return `/${normalized.slice(0, -'/index.html'.length)}/`;
+  }
+
+  if (normalized.endsWith('.html')) {
+    return `/${normalized}`;
+  }
+
+  return `/${normalized}/`;
+};
+
+const toLabel = (routePath: string): string => {
+  const normalized = trimSlashes(routePath);
+
+  if (normalized === '' || normalized === 'index.html') {
+    return 'index.html';
+  }
+
+  if (normalized.endsWith('.html')) {
+    return normalized;
+  }
+
+  return `${normalized}/index.html`;
+};
+
+const buildDynamicRoutePath = (
+  file: string,
+  params: Record<string, string | undefined>,
+): string => {
+  let routePath = extractRoutePath(file).replace(/\.astro$/, '');
+
+  for (const [key, value] of Object.entries(params)) {
+    const safeValue = value ?? '';
+
+    routePath = routePath.replace(`[...${key}]`, safeValue);
+    routePath = routePath.replace(`[${key}]`, safeValue);
+  }
+
+  routePath = normalizeSlashes(routePath);
+
+  if (routePath === 'index') {
+    return 'index.html';
+  }
+
+  if (routePath.endsWith('/index')) {
+    return `${routePath}.html`;
+  }
+
+  return changeExtension(routePath);
+};
+
+const buildStaticRoutePath = (file: string): string => {
+  return changeExtension(extractRoutePath(file));
+};
+
+const generateUrl = async (page: Page): Promise<void> => {
   if (page.getStaticPaths) {
     const paths = await page.getStaticPaths();
 
-    paths.forEach((path) => {
-      const dynamicSegmentMatch = page.file.match(/\[\.\.\.(.+?)\]\.astro$/);
+    paths.forEach((item) => {
+      const routePath = buildDynamicRoutePath(page.file, item.params);
 
-      if (dynamicSegmentMatch) {
-        const dynamicSegment = dynamicSegmentMatch[1];
-        const dynamicPath = `${path.params[dynamicSegment]}/`;
-        const dynamicLabel = `${dynamicPath}index.html`;
-        pathList.push({ ...page, url: `/${dynamicPath}`, label: dynamicLabel });
-      } else {
-        baseUrl += '/';
-        pathList.push({ ...page, url: `/${baseUrl}`, label: `/${baseUrl}index.html` });
-      }
+      pathList.push({
+        file: page.file,
+        url: toUrl(routePath),
+        label: toLabel(routePath),
+      });
     });
-  } else {
-    const staticPath = extractPath(page.file);
-    const staticUrl = staticPath === 'index.html' ? '/' : `/${staticPath}`;
-    pathList.push({ ...page, url: staticUrl, label: staticPath });
+
+    return;
   }
+
+  const routePath = buildStaticRoutePath(page.file);
+
+  pathList.push({
+    file: page.file,
+    url: toUrl(routePath),
+    label: toLabel(routePath),
+  });
 };
 
 await Promise.all(allPages.map(generateUrl));
