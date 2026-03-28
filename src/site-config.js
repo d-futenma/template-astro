@@ -4,38 +4,38 @@ const config = {
     md: 768,
   },
   images: {
-    smDir       : '/',
-    mdDir       : '/md/',
+    smDir: '/',
+    mdDir: '/md/',
     retinaSuffix: '@2x',
     optimize: {
-      inputDir         : './src/images/',
-      outputDir        : './public/',
-      format           : 'webp',
+      inputDir: './src/images/',
+      outputDir: './public/',
+      format: 'webp',
       allowedExtensions: ['.jpg', '.png'],
       options: {
-        jpg : { quality: 80, progressive: true },
-        png : { quality: 80 },
-        gif : {},
-        svg : {},
+        jpg: { quality: 80, progressive: true },
+        png: { quality: 80 },
+        gif: {},
+        svg: {},
         webp: { quality: 80 },
       }
     }
   },
   build: {
-    root   : 'htdocs',
+    root: 'dist',
     deletes: ['url-list'],
     html: {
-      minify      : true,
+      minify: true,
       relativePath: false,
     },
     css: {
-      path          : 'assets/css/style.css',
-      minify        : true,
+      path: 'assets/css/style.css',
+      minify: true,
       queryParameter: false,
     },
     js: {
-      path          : 'assets/js/bundle.js',
-      minify        : true,
+      path: 'assets/js/bundle.js',
+      minify: true,
       queryParameter: false,
     },
   },
