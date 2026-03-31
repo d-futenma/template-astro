@@ -29,12 +29,13 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
-    "@typescript-eslint/eslint-plugin": "^8.35.1",
-    "@typescript-eslint/parser": "^8.35.1",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
     "chokidar": "^4.0.3",
-    "eslint": "^9.29.0",
+    "eslint": "^10.1.0",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.3",
+    "globals": "^17.4.0",
     "image-size": "^2.0.2",
     "js-beautify": "^1.15.4",
     "markuplint": "^4.12.0",
@@ -46,6 +47,6 @@
     "prettier": "^3.6.2",
     "sharp": "^0.34.2",
     "stylelint": "^16.21.0",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.2"
   }
 }

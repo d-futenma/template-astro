@@ -55,7 +55,7 @@ const toUrl = (routePath: string): string => {
   }
 
   if (normalized.endsWith('.html')) {
-    return `/${normalized}`;
+    return `/${normalized.replace(/\.html$/, '')}`;
   }
 
   return `/${normalized}/`;
@@ -98,7 +98,7 @@ const buildDynamicRoutePath = (
     return `${routePath}.html`;
   }
 
-  return changeExtension(routePath);
+  return `${routePath}.html`;
 };
 
 const buildStaticRoutePath = (file: string): string => {
