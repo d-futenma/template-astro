@@ -4,4 +4,4 @@
 @import './base/reset.css';
 @import './base/base.css';
 @import './components/ui/svg-sprites.css';
-@import './utilities/';
+@import './utilities/index.css';

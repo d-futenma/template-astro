@@ -14,18 +14,18 @@
     "build:format": "node ./integrations/beautifyHTML.js & node ./integrations/prettierCSS.js",
     "preview": "astro preview",
     "lint": "npm-run-all -s lint:*",
-    "lint:html": "markuplint \"dist/**/*.html\"",
-    "lint:css": "stylelint \"dist/**/*.css\"",
+    "lint:html": "markuplint \"htdocs/**/*.html\"",
+    "lint:css": "stylelint \"htdocs/**/*.css\"",
     "lint:js": "eslint \"src/scripts/**/*.{js,ts}\"",
-    "format:html": "html-beautify \"dist/**/*.html\"",
-    "format:css": "prettier --write \"dist/**/*.css\""
+    "format:html": "html-beautify \"htdocs/**/*.html\"",
+    "format:css": "prettier --write \"htdocs/**/*.css\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d-futenma/template-astro"
   },
   "dependencies": {
-    "astro": "^6.1.1"
+    "astro": "^7.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

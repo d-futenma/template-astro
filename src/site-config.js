@@ -22,7 +22,7 @@ const config = {
     }
   },
   build: {
-    root: 'dist',
+    root: 'htdocs',
     deletes: ['url-list'],
     html: {
       minify: true,
